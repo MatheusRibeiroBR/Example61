@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Top Flix HD</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<style>
+@-ms-viewport { width: 100vw ; zoom: 100% ; }  @viewport { width: 100vw ; zoom: 100% ; }
+@-ms-viewport { user-zoom: fixed ; }           @viewport { user-zoom: fixed ; }
+</style>
+<link href="css/mobile.css" rel="stylesheet" />
+<script src="cordova.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/encode.js"></script>
+<script src="js/init.js"></script>
+<script src="js/app.js"></script>    
+	
+<script src="js/banco.js"></script>
+<script src="js/sammy.js"></script>
+<script src="js/letters.js"></script>
+<script src="js/carousel.js"></script>
+<script src="js/clappr.min.js"></script>
+<script src="js/plugin/LaunchMyApp.js"></script>
+
+<script src="js/lazy.js"></script>
+<script src="js/mobile.js"></script>
+
+
+<script>
+function handleOpenURL(e) {
+    var t = e.replace("topflixhd://", "");
+    window.location.href = "mobile.html" + t
+}
+
+function atualView() {
+    var e = window.location.href;
+    if (0 < (t = (e = window.location.href).indexOf("#"))) {
+        var t, a = e.substr(t + 1);
+        if (0 < (t = a.indexOf("?"))) {
+            var o = a.substr(t);
+            return a.replace(o, "")
+        }
+        return a
+    }
+    return ""
+}
+
+function lasted() {
+    window.history.state
+}
+
+function news(e) {
+    $("#news-" + e + " .noticia").show(), $("#news-" + e + " .nt").hide()
+}
+$(function() {
+    window.setTimeout(function() {
+        checkLogin()
+    }, 500), window.setInterval(function() {
+        "off" == wifiConn() && (onPause(), window.location.href = "offline.html")
+    }, 300);
+    var e = hApp();
+    $(".mPage").css("min-height", e + "px"), "" == atualView() && (window.location.href = "#home"), $(document).on("mouseover", ".exib-sex", function(e) {
+        var t = $(this).attr("id").replace("sex-", ""),
+            a = $.parseJSON($("#co-" + t).html()),
+            o = a.webp,
+            i = a.image;
+        $(".exib-sex video").remove(), $("#se-" + t).prepend('<video poster="' + i + '" width="100%" height="100%" src="' + o + '" autoplay="true" loop="true"></video>')
+    }), $(document).on("click", "#player-wrapper", function(e) {
+        0 < $(".player-res").length && $(".player-res").fadeIn()
+    }), $(document).on("click", ".nmore", function(e) {
+        $(".nmore").removeClass("active"), $(this).addClass("active"), hideRes()
+    }), $(".noRefhesh").click(function() {
+        return qbusca(), !1
+    }), $(".subDevice").click(function() {
+        return addDevice(), !1
+    }), $(".subPin").click(function() {
+        return addPin(), !1
+    }), $(".subPerfil").click(function() {
+        return editPerfil(), !1
+    }), $(".subSenha").click(function() {
+        return editSenha(), !1
+    }), $("#adtS").click(function() {
+        return adtS(), !1
+    }), $("#adtC").click(function() {
+        return adtC(), !1
+    }), $(document).on("click", ".bky", function(e) {
+        $(".page-down .preload").hide(), e.preventDefault();
+        var t = $(this).attr("data-dub"),
+            a = $(this).attr("data-leg"),
+            o = parseInt($(this).attr("data-pagar")),
+            i = parseInt($(this).attr("data-cred")),
+            n = $(this).attr("data-pago"),
+            s = $(this).attr("data-id"),
+            r = $(this).attr("data-qual"),
+            l = "'" + s + "', '" + r + "', 'dub'",
+            d = "'" + s + "', '" + r + "', 'leg'";
+        "" == t ? $("#down-dub").hide().attr("href", "") : $("#down-dub").show().attr("href", "javascript:download(" + l + ");"), "" == a ? $("#down-leg").hide().attr("href", "") : $("#down-leg").show().attr("href", "javascript:download(" + d + ");"), 1 == n ? ($(".over-down b").html(0), $(".down2").hide(), $(".down1").show()) : (o <= i ? ($(".down2").hide(), $(".down1").show()) : ($(".down2").show(), $(".down1").hide()), $(".over-down b").html(o)), openCdown()
+    }), $(document).on("backbutton", function() {
+        if (1 == $("#exoplayer").attr("data-player")) return !1;
+        if ($(".overlay-player").is(":visible")) return !1;
+        if ($(".noneTV").hasClass("open")) closeNm();
+        else if ($(".over-cast").hasClass("open")) closeCcast();
+        else if ($(".over-down").hasClass("open")) closeCdown();
+        else {
+            if (0 < $("#player-wrapper").length) return nonePlayer(), !1;
+            if ($(".menu-categoria").is(":visible")) return hideCategorias(), !1;
+            if ($(".shadLike").is(":visible")) return closeFlike(), closeSlike(), !1;
+            if ($(".corp-apps").hasClass("rotate")) return closeMenu(), !1;
+            goBack()
+        }
+        return !1
+    }), $('input[name="auto-cast"]').change(function() {
+        window.setTimeout(function() {
+            closeCcast()
+        }, 1e3), 1 == $('input[name="auto-cast"]').prop("checked") ? (Ads2(), onCast()) : offCast()
+    });
+    var t = $(window).height();
+    $(".relv").css("height", t + "px");
+    var a = getTimer();
+    $("#adsTime").html(a), $("#adsTimer").html(a)
+}), $(function(o) {
+    var e = o.sammy(function() {
+        this.get("#home", function() {
+            onTOP(), desceTop(), onBottom(), o(".menu-bottom li a").removeClass("active"), o(".menu-bottom #r-inicio").addClass("active"), updateContinue(), padraoPage(), escreveHome(), fixPage("p-home")
+        }), this.get("#buscar", function() {
+            onBottom(), onTOP(), o(".newMenu").hide(), o(".menu-bottom li a").removeClass("active"), o(".menu-bottom #r-buscar").addClass("active"), padraoPage(), fixPage("p-buscar")
+        }), this.get("#filmes", function() {
+            onBottom(), o(".newMenu").attr("data-este") == atualView() || (onTOP(), desceTop()), o(".menu-bottom li a").removeClass("active"), padraoPage();
+            var e = getUrl();
+            fixPage("p-filmes"), offTOP("filmes", o("#F" + e).attr("data-name")), o(".menu-categoria a").removeClass("active"), o("#F" + e).addClass("active"), montaFilme(e), o("#vipFilmes").attr("href", "#filmes?" + e)
+        }), this.get("#playFilme", function() {
+            ofBottom(), onTOP(), o(".newMenu").hide(), o(".menu-bottom li a").removeClass("active"), clearFilme(), o("#p-playfilmes .globalOverlay").fadeIn(), o("#p-playfilmes .globalFilter").hide(), padraoPage();
+            var e = getUrl();
+            fixPage("p-playfilmes"), window.setTimeout(function() {
+                filterFilme(e)
+            }, 700)
+        }), this.get("#playTv", function() {
+            ofBottom(), onTOP(), o(".newMenu").hide(), o(".menu-bottom li a").removeClass("active"), clearFilme(), o("#p-playTv .globalOverlay").fadeIn(), o("#p-playTv .globalFilter").hide(), padraoPage();
+            var e = getUrl();
+            fixPage("p-playTv"), window.setTimeout(function() {
+                filterCanal(e)
+            }, 700)
+        }), this.get("#series", function() {
+            onBottom(), o(".newMenu").attr("data-este") == atualView() || (onTOP(), desceTop()), o(".menu-bottom li a").removeClass("active"), padraoPage();
+            var e = getUrl();
+            fixPage("p-series"), offTOP("series", o("#S" + e).attr("data-name")), o(".menu-categoria a").removeClass("active"), o("#S" + e).addClass("active"), montaSerie(e), o("#vipSeries").attr("href", "#series?" + e)
+        }), this.get("#adulto", function() {
+            Ads(), onBottom(), o(".newMenu").attr("data-este") == atualView() || (onTOP(), desceTop()), o(".menu-bottom li a").removeClass("active"), padraoPage(), fixPage("p-adulto");
+            var e = getUrl();
+            1 == o("#pin").attr("data-accept") ? (o("#adultPin").hide(), o("#adultPage").show(), getAdults2(), offTOP("adulto", o("#Z" + e).attr("data-name"))) : (offTOP("adulto", "none"), o("adultPin").show(), o("#adultPage").hide())
+        }), this.get("#playSerie", function() {
+            ofBottom(), onTOP(), o(".newMenu").hide(), o(".menu-bottom li a").removeClass("active"), clearSerie(), o(".globalOverlay").fadeIn(), o(".globalFilter").hide(), padraoPage();
+            var e = getUrl();
+            fixPage("p-playseries"), window.setTimeout(function() {
+                filterSerie(e)
+            }, 700)
+        }), this.get("#tv", function() {
+            onBottom(), o(".newMenu").attr("data-este") == atualView() || (onTOP(), desceTop()), o(".menu-bottom li a").removeClass("active"), padraoPage();
+            var e = getUrl();
+            fixPage("p-tv"), offTOP("tv", o("#T" + e).attr("data-name")), o(".menu-categoria a").removeClass("active"), o("#T" + e).addClass("active"), montaTv(e), o("#vipTv").attr("href", "#tv?" + e)
+        }), this.get("#perfil", function() {
+            onBottom(), onTOP(), o(".newMenu").hide(), o(".menu-bottom li a").removeClass("active"), o(".menu-bottom #r-perfil").addClass("active"), restMore(), padraoPage(), fixPage("p-conta"), window.setTimeout(function() {
+                checkkPlan()
+            }, 500)
+        }), this.get("#historico", function() {
+            ofBottom(), onTOP(), o(".newMenu").hide(), o(".menu-bottom li a").removeClass("active"), padraoPage();
+            getUrl();
+            fixPage("p-historico"), o(".topload3").show(), o("ul.historico").empty().hide(), window.setTimeout(function() {
+                perfilHistorico()
+            }, 500)
+        }), this.get("#lista", function() {
+            onBottom(), onTOP(), o(".newMenu").hide(), o(".menu-bottom li a").removeClass("active"), padraoPage();
+            getUrl();
+            fixPage("p-lista"), window.setTimeout(function() {
+                perfilLista()
+            }, 500)
+        }), this.get("#menu", function() {
+            onBottom(), onTOP(), o(".newMenu").hide(), o(".menu-bottom li a").removeClass("active"), o("#r-menu").addClass("active"), padraoPage();
+            getUrl();
+            fixPage("p-menu")
+        }), this.get("#privacidade", function() {
+            ofBottom(), onTOP(), o(".newMenu").hide(), o(".menu-bottom li a").removeClass("active"), padraoPage();
+            getUrl();
+            fixPage("p-privacidade"), window.setTimeout(function() {}, 500)
+        }), this.get("#creditos", function() {
+            onBottom(), onTOP(), o(".newMenu").hide(), o(".menu-bottom li a").removeClass("active"), padraoPage();
+            var e = getUrl();
+            fixPage("p-creditos");
+            e = getUrl();
+            o(".bx").removeClass("active"), o(".ppg").hide(), 3 == e ? o(".padrao-3").show() : 2 == e ? (o(".padrao-2").show(), o("#bx2").addClass("active")) : 4 == e ? (addTopMy(), o(".padrao-4").show(), o("#bx4").addClass("active")) : (addTop50(), o(".padrao-1").show(), o("#bx1").addClass("active"))
+        }), this.get("#novidades", function() {
+            ofBottom(), onTOP(), o(".newMenu").hide(), o(".menu-bottom li a").removeClass("active"), padraoPage();
+            getUrl();
+            fixPage("p-novidades"), getNovidades(), window.setTimeout(function() {}, 500)
+        }), this.get("#ganhar", function() {
+            ofBottom(), onTOP(), o(".newMenu").hide(), o(".menu-bottom li a").removeClass("active"), padraoPage();
+            getUrl();
+            fixPage("p-ganhar")
+        }), this.get("#noticias", function() {
+            ofBottom(), onTOP(), o(".newMenu").hide(), o(".menu-bottom li a").removeClass("active"), padraoPage();
+            getUrl();
+            fixPage("p-noticias"), o("#sNews").empty(), o.getJSON(getLink() + "/app-notices.php", {
+                none: !0
+            }, function(e) {
+                jQuery.each(e, function(e, t) {
+                    var a = "'" + t.link + "'";
+                    o("#sNews").append('<li id="news-' + t.id + '"><a href="javascript:external(' + a + ');" class="nt"></a><div class="notc"><div class="img"><img src="' + t.image + '" /></div><div style="padding: 15px;"><div class="title">' + t.title + '</div><div class="desc">' + t.seo + '</div><div class="time">' + t.date + '</div><div class="noticia">' + t.conteudo + "</div></div></div></li>")
+                })
+            })
+        })
+    });
+    o(function() {
+        e.run()
+    })
+}), $(function() {
+    if ($(".newMenu").is(":visible")) {
+        var t = $(".hed"),
+            a = $(".peg");
+        $(".corp-apps").on("scroll", function() {
+            var e = 1 - ($(this).scrollTop() - 2 * t.outerHeight() / 100 + 200) / 200;
+            e *= e, a.css({
+                opacity: e
+            }), "1" < e ? a.css({
+                opacity: 1
+            }) : e < "0" && a.css({
+                opacity: 0
+            })
+        })
+    }
+    var o = $(".ratio-hd"),
+        i = $(".oprth");
+    $(".corp-apps").on("scroll", function() {
+        var e = 1 - ($(this).scrollTop() - 2 * o.outerHeight() / 100 + 200) / 200;
+        e *= e, i.css({
+            opacity: e
+        }), "1" < e ? i.css({
+            opacity: 1
+        }) : e < "0" && i.css({
+            opacity: 0
+        })
+    })
+});
+</script>
+
+
+</head>
+
+	
+<body>
+	
+	
+	
+	<div class="alerter">
+		<div class="tss oh">Ocorreu um Erro.</div>
+		<div class="tss ohh">Tudo Certo.</div>
+		
+		<div class="p"><p></p></div><div class="b">
+			<a href="javascript:closeMessage();">Ok</a>
+		</div>
+	</div>
+	<div onClick="closeMessage();" class="overAlerter"></div>
+	
+	<div class="noneTV">
+		
+		<a href="javascript:closeNm();" class="closer-none"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 212.982 212.982" style="enable-background:new 0 0 212.982 212.982;" xml:space="preserve"><g><path style="fill-rule:evenodd;clip-rule:evenodd;" d="M131.804,106.491l75.936-75.936c6.99-6.99,6.99-18.323,0-25.312
+		c-6.99-6.99-18.322-6.99-25.312,0l-75.937,75.937L30.554,5.242c-6.99-6.99-18.322-6.99-25.312,0c-6.989,6.99-6.989,18.323,0,25.312
+		l75.937,75.936L5.242,182.427c-6.989,6.99-6.989,18.323,0,25.312c6.99,6.99,18.322,6.99,25.312,0l75.937-75.937l75.937,75.937
+		c6.989,6.99,18.322,6.99,25.312,0c6.99-6.99,6.99-18.322,0-25.312L131.804,106.491z"/></svg></a>
+		<div class="relt">
+			<div class="relv">
+				<div class="lgg">
+					<img src="img/header2.png" />
+					<div class="namer">ASSINE O TOP FLIX TV</div>
+					<div class="desch">
+						São mais de 200 canais IPTV brasileiros. SEM ANTENAS só pela internet!!!
+						<p><span>a partir de</span>R$ 32,00 (mês).</p>
+					</div>
+				</div>
+				<div class="deschh">
+					<a href="javascript:Testing();" class="testing"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 333.6 333.6" style="enable-background:new 0 0 333.6 333.6;" xml:space="preserve">
+					<path d="M128,58.297h29.2l-46.8-53.6c-4-4.4-10.8-5.2-15.6-1.2c-4.4,4-5.2,10.8-1.2,15.6L128,58.297z"></path>
+					<path d="M226.4,41.897c4.4-4.4,4.4-11.2,0-15.6c-4.4-4.4-11.2-4.4-15.6,0l-31.6,31.6H210L226.4,41.897z"></path>
+					<path d="M308.8,70.297h-142h-142c-13.6,0-24.8,11.2-24.8,24.8v178c0,13.6,11.2,24.8,24.8,24.8h38.4h207.2h38.4     c13.6,0,24.8-11.2,24.8-24.8v-178C333.6,81.497,322.4,70.297,308.8,70.297z M235.6,245.897c0,9.6-7.6,17.2-17.2,17.2H54     c-9.6,0-17.2-7.6-17.2-17.2v-123.2c0-9.6,7.6-17.2,17.2-17.2h164.4c9.6,0,17.2,7.6,17.2,17.2V245.897z M306.4,207.497     c0,2-1.6,3.6-3.6,3.6h-36c-2,0-3.6-1.6-3.6-3.6v-27.2c0-2,1.6-3.6,3.6-3.6h36c2,0,3.6,1.6,3.6,3.6V207.497z M306.4,149.897     c0,2-1.6,3.6-3.6,3.6h-36c-2,0-3.6-1.6-3.6-3.6v-27.2c0-2,1.6-3.6,3.6-3.6h36c2,0,3.6,1.6,3.6,3.6V149.897z"></path>
+					<path d="M24.8,319.897c0,7.2,5.6,12.8,12.8,12.8h12.8c7.2,0,12.8-5.6,12.8-12.8v-10H24.8V319.897z"></path>
+					<path d="M270.4,319.897L270.4,319.897c0,7.2,5.6,12.8,12.8,12.8H296c7.2,0,12.8-5.6,12.8-12.8v-10h-38.4V319.897z"></path></svg>Teste por 4 horas</a>
+					<div class="preloadd"><i class="preload"></i></div>
+				</div>
+				<a href="javascript:compMore();" class="more">SAIBA MAIS<i><svg id="fg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 306 306" style="enable-background:new 0 0 306 306;" xml:space="preserve"><polygon style="fill:#fff;" points="270.3,58.65 153,175.95 35.7,58.65 0,94.35 153,247.35 306,94.35"/></svg></i></a>
+			</div>
+			
+			<div class="descrip">
+				<div class="mu-til"></div>
+			</div>
+			
+			<div class="twoNone">
+				<div class="t1 ty">Grade de canais super completa</div>
+				
+				
+				
+				
+				<div class="none-d"><img class="all-cns" src="img/noneTV1.png" /></div>
+				
+				<div class="t9">Mais de 200 canais da TV</div>
+				<div class="t10">Abertos e Fechados</div>
+				<div class="t11">para assistir onde e quando quiser</div>
+				
+				
+				<div class="t8">
+					
+					<i style="border-left: 1px solid #000;">
+						SD
+						<div id="cc1">0</div>
+					</i>
+					<i style="border-left: 1px solid #393937;">
+						HD
+						<div id="cc2">0</div>
+					</i>
+					<i style="border-left: 1px solid #393937;">
+						FHD
+						<div id="cc3">0</div>
+					</i>
+					<i style="border-left: 1px solid #393937;">
+						4K
+						<div id="cc4">0</div>
+					</i>
+					
+					<div class="clear"></div>
+					
+				</div>
+				
+				
+				<div class="t9">DIVERSÃO PARA TODA FAMÍLIA</div>
+				<div class="t1" style="padding-top: 10px;">Utilize em KODI, MXQ, TV BOX, SMART TV, PC CELULAR ETC.</div>
+				<div class="none-d" style="padding: 35px 0;"><img src="img/iao.png" style="width: 150px; margin-left: auto; margin-right: auto; " /></div>
+				<div class="t11">são mais de 3.000 filmes e 200 séries para maratonar </div>
+				
+				
+				<div class="t1" style="padding-top: 20px;">Planos com <b>Conteúdo Adulto</b> e controle dos pais</div>
+				<div class="none-d"><img src="img/noneTV2.png" /></div>
+				<div class="t2"><b>Top Flix TV</b> sem anúncios, com servidor dedicado para clientes!</div>
+				<div class="none-d">
+					<a class="whats" href="#"><i>Compre pelo WhatsApp</i><p></p></a>
+				</div>
+			</div>
+			
+			<div class="pnj">
+				<div class="list-planos"></div>
+			</div>
+			
+		</div>
+		
+	</div>
+	
+	<div id="playerShow">
+		<a href="javascript:nonePlayer();" class="backplayer">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px"  viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve"><path d="M178.5,191.25v-76.5L0,293.25l178.5,178.5v-76.5l-102-102L178.5,191.25z M331.5,216.75v-102L153,293.25l178.5,178.5V367.2    C459,367.2,548.25,408,612,497.25C586.5,369.75,510,242.25,331.5,216.75z"></path></svg>
+		</a>
+		<div class="overlay-player"><div class="lo"><i class="preload"></i>Carregando</div></div>
+		<input id="currentserie" type="hidden" />
+		<div class="title-player players-btn">
+			<span></span>
+		</div>
+		<a class="player-seeking minus players-btn"href="javascript:seekMinus();">
+			<i>10</i>
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 489.533 489.533" style="enable-background:new 0 0 489.533 489.533;" xml:space="preserve"><path d="M268.175,488.161c98.2-11,176.9-89.5,188.1-187.7c14.7-128.4-85.1-237.7-210.2-239.1v-57.6c0-3.2-4-4.9-6.7-2.9   l-118.6,87.1c-2,1.5-2,4.4,0,5.9l118.6,87.1c2.7,2,6.7,0.2,6.7-2.9v-57.5c87.9,1.4,158.3,76.2,152.3,165.6   c-5.1,76.9-67.8,139.3-144.7,144.2c-81.5,5.2-150.8-53-163.2-130c-2.3-14.3-14.8-24.7-29.2-24.7c-17.9,0-31.9,15.9-29.1,33.6   C49.575,418.961,150.875,501.261,268.175,488.161z"></path></svg>
+		</a>
+		<a class="player-seeking more players-btn" href="javascript:seekMore();">
+			<i>10</i>
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 489.533 489.533" style="enable-background:new 0 0 489.533 489.533;" xml:space="preserve"><path d="M268.175,488.161c98.2-11,176.9-89.5,188.1-187.7c14.7-128.4-85.1-237.7-210.2-239.1v-57.6c0-3.2-4-4.9-6.7-2.9   l-118.6,87.1c-2,1.5-2,4.4,0,5.9l118.6,87.1c2.7,2,6.7,0.2,6.7-2.9v-57.5c87.9,1.4,158.3,76.2,152.3,165.6   c-5.1,76.9-67.8,139.3-144.7,144.2c-81.5,5.2-150.8-53-163.2-130c-2.3-14.3-14.8-24.7-29.2-24.7c-17.9,0-31.9,15.9-29.1,33.6   C49.575,418.961,150.875,501.261,268.175,488.161z"></path></svg>
+		</a>
+		<a href="#" class="player-seeking prev-ep players-btn hider">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 57 57" style="enable-background:new 0 0 57 57;" xml:space="preserve"><path d="M56.575,27.683l-27-19c-0.306-0.216-0.703-0.242-1.036-0.07C28.208,8.784,28,9.127,28,9.5v17.777L1.575,8.694  C1.27,8.481,0.872,8.453,0.539,8.625C0.208,8.797,0,9.14,0,9.513v37.975c0,0.373,0.208,0.716,0.539,0.888  C0.685,48.45,0.843,48.487,1,48.487c0.202,0,0.403-0.062,0.575-0.182L28,29.723V47.5c0,0.373,0.208,0.716,0.539,0.888  C28.685,48.463,28.843,48.5,29,48.5c0.202,0,0.404-0.062,0.575-0.183l27-19C56.842,29.131,57,28.825,57,28.5  S56.842,27.869,56.575,27.683z"></path></svg>
+			<i>Episódio Anterior</i>
+		</a>
+		<a href="#" class="player-seeking next-ep players-btn hider">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 57 57" style="enable-background:new 0 0 57 57;" xml:space="preserve"><path d="M56.575,27.683l-27-19c-0.306-0.216-0.703-0.242-1.036-0.07C28.208,8.784,28,9.127,28,9.5v17.777L1.575,8.694  C1.27,8.481,0.872,8.453,0.539,8.625C0.208,8.797,0,9.14,0,9.513v37.975c0,0.373,0.208,0.716,0.539,0.888  C0.685,48.45,0.843,48.487,1,48.487c0.202,0,0.403-0.062,0.575-0.182L28,29.723V47.5c0,0.373,0.208,0.716,0.539,0.888  C28.685,48.463,28.843,48.5,29,48.5c0.202,0,0.404-0.062,0.575-0.183l27-19C56.842,29.131,57,28.825,57,28.5  S56.842,27.869,56.575,27.683z"></path></svg>
+			<i>Próximo Episódio</i>
+		</a>
+		<div data-current="" data-type="" data="title" class="item-play"></div>
+	</div>
+	
+	<div id="register" style="display: none;">1</div>
+	<div id="unic" style="display: none;"></div>
+	<div id="site" style="display: none;"></div>
+	<div id="init" style="display: none;">0</div>
+	<div id="sistema" style="display: none;"></div>
+	<div id="string" style="display: none;"></div>
+	<div id="hashe" style="display: none;">E3AHkWK%IEY2Y5E5A8HDTVR%ZERIA12855469Rd47855AA359%</div>
+	<div id="dataUser" style="display: none;"></div>
+	<div id="back" style="display: none;">0</div>
+	<div id="pin" data-accept="0" style="display: none;">0</div>
+	<input id="cast" type="hidden" value="0" />
+	<input id="localcast" type="hidden" value="0" />
+	<input type="hidden" id="sistemaCast" value="" />
+	<div id="adsTimer" style="display: none;"></div>
+	<div id="adsTime" style="display: none;"></div>
+		 
+	
+	
+	<div class="introduct" style="display: block;">
+		<div class="logo-intro anim miinn miin"></div>
+		<i class="i animmm overed">Top Flix TV</i>
+		<div class="preload" style="display: block;"></div>
+	</div>	
+		
+	<div class="ovv">
+		<div class="backLogo"></div>
+		<div class="backgrounds"></div>
+	</div>
+		
+	<div class="android-message"><p></p></div>	
+	
+	<div id="container" class="corp-apps">
+		
+		<div class="shadd" onclick="closeMenu()"></div>
+		
+		<!--NEW MENU -->
+		
+		<div class="newMenu animated">
+			<div class="over-menu"></div>
+			<div class="peg"></div>
+			<div class="corp-menu">
+				<div class="rl">
+					<a href="#home" class="homelink"></a>
+					<div class="resv">
+						<a href="#filmes?novos" id="kfilmes" class="nons">Filmes</a>
+						<a href="#series?melhores" id="kseries" class="nons">Séries</a>
+						<a href="#tv?27" id="ktv" class="nons">Tv Online</a>
+						<a href="#adulto?1" id="kadultos" class="nons">Adulto</a>
+						
+						<div class="meen liner-topo">
+							<a href="javascript:showCategorias()">
+								<span class="prmmm"></span>
+								<i class="i"><i></i></i>
+							</a>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+				
+		<ul class="menu-bottom animated">
+			<div class="over-menu"></div>
+			<li><a id="r-inicio" href="#home" class="active"><i><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="611.997px" height="611.998px" viewBox="0 0 611.997 611.998" style="enable-background:new 0 0 611.997 611.998;" xml:space="preserve"><path d="M511.114,300.251c-9.94,0-17.638,7.663-17.638,17.651v241.105H368.401v-98.453c0-9.236-7.697-17.31-17.002-17.31h-90.435
+			c-9.948,0-17.96,8.073-17.96,17.31v98.453h-124.76v-233.1c0-9.306-7.69-17.036-17.638-17.036c-9.298,0-16.995,7.73-16.995,17.036
+			v250.752c0,9.305,7.697,17.036,16.995,17.036h160.358c9.298,0,16.995-7.731,16.995-17.036v-98.454h55.801v98.454
+			c0,9.305,7.697,17.036,17.639,17.036h159.715c9.299,0,16.995-7.731,16.995-17.036V317.903
+			C528.109,307.915,520.413,300.251,511.114,300.251z"></path><path d="M607.003,314.003L467.819,174.225V78.919c0-9.921-8.019-17.583-17.96-17.583c-9.305,0-17.001,7.663-17.001,17.583v60.345
+			L318.046,23.774c-3.518-3.558-7.697-5.474-11.864-5.474c-4.81,0-8.983,1.984-12.507,5.474L5.361,312.087
+			c-6.917,6.91-7.375,17.994,0,24.357c6.411,7.389,17.454,6.91,24.371,0l276.45-275.793l275.807,278.393
+			c2.873,2.874,7.054,4.516,12.507,4.516c4.81,0,8.976-1.642,12.507-4.516C613.42,332.613,613.899,320.982,607.003,314.003z"></path></svg></i>INÍCIO</a></li>
+			<li><a id="r-buscar" href="#buscar"><i><svg version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 319.314 319.314" style="enable-background:new 0 0 319.314 319.314;" xml:space="preserve"><path d="M70.996,71.029c-35.282,35.282-35.282,92.689,0,127.972l14.143-14.143c-27.484-27.483-27.484-72.203,0-99.687
+				L70.996,71.029z"/><path d="M254.106,198.578c27.21-51.06,19.33-116.051-23.653-159.034C204.951,14.044,171.046,0,134.982,0
+				c-36.063,0-69.969,14.044-95.47,39.544c-52.642,52.643-52.642,138.298,0,190.94c25.501,25.5,59.407,39.545,95.47,39.545
+				c22.556,0,44.268-5.495,63.607-15.849l65.135,65.134l55.559-55.558L254.106,198.578z M134.982,250.03
+				c-30.721,0-59.604-11.964-81.328-33.687C8.81,171.499,8.81,98.531,53.654,53.687C75.378,31.963,104.261,20,134.982,20
+				c30.722,0,59.604,11.963,81.328,33.687c44.844,44.845,44.844,117.812,0,162.656C194.586,238.066,165.704,250.03,134.982,250.03z
+				 M215.85,243.157c5.116-3.843,9.998-8.068,14.602-12.672c4.63-4.63,8.843-9.52,12.659-14.615l47.887,47.887l-27.274,27.274
+				L215.85,243.157z"/></svg></i>BUSCAS</a></li>
+			<li><a id="r-perfil" href="#perfil"><i><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path d="M299.29,255.5h-86.58c-85.14,0-154.42,69.27-154.42,154.42V512h395.42V409.92C453.71,324.77,384.43,255.5,299.29,255.5z
+			 M88.29,482v-72.08c0-68.61,55.82-124.42,124.42-124.42h86.58c68.6,0,124.42,55.81,124.42,124.42V482H88.29z"/><path d="M256,0c-65.84,0-119.41,53.57-119.41,119.41S190.16,238.82,256,238.82s119.41-53.57,119.41-119.41S321.84,0,256,0z
+			 M256,208.82c-49.3,0-89.41-40.11-89.41-89.41C166.59,70.11,206.7,30,256,30s89.41,40.11,89.41,89.41
+			C345.41,168.71,305.3,208.82,256,208.82z"/></svg></i>PERFIL</a></li>
+			<li><a id="r-menu" href="#menu"><i><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+					<path d="M176.792,0H59.208C26.561,0,0,26.561,0,59.208v117.584C0,209.439,26.561,236,59.208,236h117.584    C209.439,236,236,209.439,236,176.792V59.208C236,26.561,209.439,0,176.792,0z M196,176.792c0,10.591-8.617,19.208-19.208,19.208    H59.208C48.617,196,40,187.383,40,176.792V59.208C40,48.617,48.617,40,59.208,40h117.584C187.383,40,196,48.617,196,59.208    V176.792z"></path>
+					<path d="M452,0H336c-33.084,0-60,26.916-60,60v116c0,33.084,26.916,60,60,60h116c33.084,0,60-26.916,60-60V60    C512,26.916,485.084,0,452,0z M472,176c0,11.028-8.972,20-20,20H336c-11.028,0-20-8.972-20-20V60c0-11.028,8.972-20,20-20h116    c11.028,0,20,8.972,20,20V176z"></path>
+					<path d="M176.792,276H59.208C26.561,276,0,302.561,0,335.208v117.584C0,485.439,26.561,512,59.208,512h117.584    C209.439,512,236,485.439,236,452.792V335.208C236,302.561,209.439,276,176.792,276z M196,452.792    c0,10.591-8.617,19.208-19.208,19.208H59.208C48.617,472,40,463.383,40,452.792V335.208C40,324.617,48.617,316,59.208,316h117.584    c10.591,0,19.208,8.617,19.208,19.208V452.792z"></path>
+					<path d="M452,276H336c-33.084,0-60,26.916-60,60v116c0,33.084,26.916,60,60,60h116c33.084,0,60-26.916,60-60V336    C512,302.916,485.084,276,452,276z M472,452c0,11.028-8.972,20-20,20H336c-11.028,0-20-8.972-20-20V336c0-11.028,8.972-20,20-20    h116c11.028,0,20,8.972,20,20V452z"></path>
+				</svg></i>MAIS</a></li>
+				
+			
+		</ul>
+		
+		<div id="pull">
+			<div class="corpo-app">
+				
+				<a href="#home" class="over-home"></a>
+				
+				<!--PAGE HOME-->
+				<div id="p-home" class="noDisable animated no-pads">
+
+					<div id="homeImage" class="home-results hed">
+						<div class="shadder"></div>
+						<div class="caption">
+							<img src="img/play-logo2.png" />
+							<h1 id="topH1">&nbsp;</h1>
+							<h2 id="topH2">&nbsp;</h2>
+							<h3 id="topH3">&nbsp;</h3>
+							<div class="socials">
+								<a class="mm-insta">
+									<div><i><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="m75 512h362c41.355469 0 75-33.644531 75-75v-362c0-41.355469-33.644531-75-75-75h-362c-41.355469 0-75 33.644531-75 75v362c0 41.355469 33.644531 75 75 75zm-45-437c0-24.8125 20.1875-45 45-45h362c24.8125 0 45 20.1875 45 45v362c0 24.8125-20.1875 45-45 45h-362c-24.8125 0-45-20.1875-45-45zm0 0"></path><path d="m256 391c74.4375 0 135-60.5625 135-135s-60.5625-135-135-135-135 60.5625-135 135 60.5625 135 135 135zm0-240c57.898438 0 105 47.101562 105 105s-47.101562 105-105 105-105-47.101562-105-105 47.101562-105 105-105zm0 0"></path><path d="m406 151c24.8125 0 45-20.1875 45-45s-20.1875-45-45-45-45 20.1875-45 45 20.1875 45 45 45zm0-60c8.269531 0 15 6.730469 15 15s-6.730469 15-15 15-15-6.730469-15-15 6.730469-15 15-15zm0 0"></path></svg></i>Top Flix TV no<br>Instagram</div>
+								</a>
+								<a class="mm-face">
+									<div><i><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="m75 512h167v-182h-60v-60h60v-75c0-41.355469 33.644531-75 75-75h75v60h-60c-16.542969 0-30 13.457031-30 30v60h87.292969l-10 60h-77.292969v182h135c41.355469 0 75-33.644531 75-75v-362c0-41.355469-33.644531-75-75-75h-362c-41.355469 0-75 33.644531-75 75v362c0 41.355469 33.644531 75 75 75zm-45-437c0-24.8125 20.1875-45 45-45h362c24.8125 0 45 20.1875 45 45v362c0 24.8125-20.1875 45-45 45h-105v-122h72.707031l20-120h-92.707031v-30h90v-120h-105c-57.898438 0-105 47.101562-105 105v45h-60v120h60v122h-137c-24.8125 0-45-20.1875-45-45zm0 0"></path></svg></i>Top Flix TV no<br>Facebook</div>
+								</a>
+								<div class="clear"></div>
+							</div>
+						</div>
+						
+					</div>
+
+					<div id="primm" class="fields" style="display: none;">
+						<h1><span></span><b>CONTINUE</b> ASSISTINDO</h1>
+						<div class="list-items" id="filmes1"></div>
+					</div>
+
+					<div id="segunn" class="fields">
+						<h1><span></span><b>FILMES</b> LANÇAMENTOS</h1>
+						<div class="list-items car-homer" id="filmes2"></div>
+					</div>
+					
+					<div class="fields">
+						<h1><span></span><b>EM</b> ALTA</h1>
+						<div class="list-items car-homer" id="filmes8"></div>
+					</div>
+										
+					<div class="fields">
+						<h1><span></span><b>MAIS</b> ASSISTIDOS</h1>
+						<div class="list-items car-homer" id="filmes3"></div>
+					</div>
+					
+					<div class="fields">
+						<h1><span></span><b>JÁ</b> DISPONÍVEL</h1>
+						<div id="looper" class="outer owl-carousel"></div>
+					</div>
+
+					<div class="fields">
+						<h1><span></span><b>FILMES</b> RECOMENDADOS</h1>
+						<div class="list-items car-homer" id="filmes5"></div>
+					</div>
+
+					<div class="fields">
+						<h1><span></span><b>NOVOS</b> EPISÓDIOS</h1>
+						<div class="list-items car-homer" id="filmes6"></div>
+					</div>
+
+					<div id="tercnn" class="fields">
+						<h1><span></span><b>MINHA</b> LISTA</h1>
+						<div class="list-items car-homer" id="filmes7"></div>
+					</div>
+					
+				</div>
+				
+				<!--PAGE BUSCAR -->
+				<div id="p-buscar" class="mPage animated">
+					<form class="search">
+						<div class="ppb">
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 475.084 475.084" style="enable-background:new 0 0 475.084 475.084;" xml:space="preserve"><path d="M464.524,412.846l-97.929-97.925c23.6-34.068,35.406-72.047,35.406-113.917c0-27.218-5.284-53.249-15.852-78.087   c-10.561-24.842-24.838-46.254-42.825-64.241c-17.987-17.987-39.396-32.264-64.233-42.826   C254.246,5.285,228.217,0.003,200.999,0.003c-27.216,0-53.247,5.282-78.085,15.847C98.072,26.412,76.66,40.689,58.673,58.676   c-17.989,17.987-32.264,39.403-42.827,64.241C5.282,147.758,0,173.786,0,201.004c0,27.216,5.282,53.238,15.846,78.083   c10.562,24.838,24.838,46.247,42.827,64.234c17.987,17.993,39.403,32.264,64.241,42.832c24.841,10.563,50.869,15.844,78.085,15.844   c41.879,0,79.852-11.807,113.922-35.405l97.929,97.641c6.852,7.231,15.406,10.849,25.693,10.849   c9.897,0,18.467-3.617,25.694-10.849c7.23-7.23,10.848-15.796,10.848-25.693C475.088,428.458,471.567,419.889,464.524,412.846z    M291.363,291.358c-25.029,25.033-55.148,37.549-90.364,37.549c-35.21,0-65.329-12.519-90.36-37.549   c-25.031-25.029-37.546-55.144-37.546-90.36c0-35.21,12.518-65.334,37.546-90.36c25.026-25.032,55.15-37.546,90.36-37.546   c35.212,0,65.331,12.519,90.364,37.546c25.033,25.026,37.548,55.15,37.548,90.36C328.911,236.214,316.392,266.329,291.363,291.358z" fill="#FFF"></path></svg>
+							<label>
+								<input type="text" id="s" placeholder="O QUE VOCÊ QUER ASSISTIR?" />
+								<input class="noRefhesh" autocomplete="off" type="submit" style="display:none;" />
+							</label>    
+						</div>        
+					</form>
+					
+					<div class="search-preloader"><i class="preload"></i></div>
+					<div class="sugestion">
+						
+						
+						<div class="qIn">Encontre seu Filme ou sua Série preferida...</div>
+						<h1>SUGESTÕES:</h1> <p>Tente palavras-chave diferentes:</p> <p>Procurando um filme ou série?</p> <p>Experimente buscar por filme, série, ator, diretor ou elenco!</p> <p>Você pode pesquisar pelo ANO de lançamento!</p>
+					</div>
+					<div class="result-search">
+
+						<div style="display: none;" id="b-um" class="fields">
+							<h1><span></span><b>FILMES</b> <div style="float:right; font-size: 12px; padding-top:3px;" id="dd-one"></div></h1>
+							<div class="list-items" id="bfilmes1"></div>
+						</div>
+						<div style="display: none;" id="b-dois" class="fields">
+							<h1><span></span><b>SÉRIES</b> <div style="float:right; font-size: 12px; padding-top:3px;" id="dd-two"></div></h1>
+							<div class="list-items" id="bfilmes2"></div>
+						</div>
+						<div style="display: none;" id="b-tres" class="fields">
+							<h1><span></span><b>TV ONLINE</b> <div style="float:right; font-size: 12px; padding-top:3px;" id="dd-tre"></div></h1>
+							<div class="list-items busca-tv" id="bfilmes3" style="padding-right: 40px;"></div>
+						</div>
+
+					</div>
+					
+				</div>
+				
+				<!--PAGE MORE -->
+				<div id="p-menu" class="mPage animated peg-page" data-direction="left">
+					
+					<div class="padrao-top" style="display: block;">
+						<div class="rel2">
+							<a href="javascript:goBack();" class="bkk"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve"><path d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+			c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+			L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+			c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+			c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+			C492,219.198,479.172,207.418,464.344,207.418z"/></svg></a>
+							Top Flix TV
+						</div>
+					</div>
+					
+					<div class="more-menu">
+					
+						<div class="pds">
+							
+							<ul class="one">
+								<li><a href="#novidades">Novidades</a></li>
+								<li><a href="#lista">Minha lista</a></li>
+								<li><a href="#historico">Meu histórico</a></li>
+								<li><a href="#creditos">Solicitar titulo</a></li>
+								<li id="rtopp"><a href="javascript:noneTV();">Remover anúncios</a></li>
+								<li id="r-adult" style="display: none;"><a href="#adulto?1">Adulto</a></li>
+								<li><a href="#noticias">Notícias</a></li>							
+							</ul>
+							
+							<ul class="two">
+								<li style="display: none;" id="atWhats"><a href="#">Atendimento</a></li>
+								<li><a href="#privacidade">Privacidade e termos</a></li>
+								<li><a class="mm-insta" id="mm-insta" href="#">Instagram</a></li>
+								<li><a class="mm-face" id="mm-face" href="#">Facebook</a></li>
+								<li><a href="javascript:deslog();">Sair</a></li>
+							</ul>
+							
+						</div>
+						
+					</div>
+					
+					
+				</div>
+				
+				<!--PAGE FILMES -->
+				<div id="p-filmes" class="mPage animated">
+					<div id="getF" class="getCategory animated"></div>
+					<div id="getF-novos" class="getCategory animated"></div>
+					<div id="getF-news" class="getCategory animated"></div>
+					<div id="getF-listas" class="getCategory animated"></div>
+				</div>
+				
+				<!--PAGE Play FILMES -->
+				<div id="p-playfilmes" class="mPage animated">
+					<div class="g-cast">
+						<a class="setCast" href="javascript:openCcast();">
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px"  viewBox="0 0 469.333 469.333" style="enable-background:new 0 0 469.333 469.333;" xml:space="preserve"><path d="M0,277.333V320c58.88,0,106.667,47.787,106.667,106.667h42.667C149.333,344.213,82.453,277.333,0,277.333z" ></path><path d="M0,362.667v64h64C64,391.36,35.307,362.667,0,362.667z" ></path><path d="M426.667,42.667h-384C19.093,42.667,0,61.76,0,85.333v64h42.667v-64h384V384H277.333v42.667h149.333     c23.573,0,42.667-19.093,42.667-42.667V85.333C469.333,61.76,450.24,42.667,426.667,42.667z" ></path><path d="M0,192v42.667c106.027,0,192,85.973,192,192h42.667C234.667,297.067,129.6,192,0,192z" fill="#FFF"></path></svg>
+						</a>
+					</div>
+					
+					<div class="minner-top">
+						<div class="rel1 oprth"></div>
+						<div class="rel2">
+							<a href="javascript:goBack();" class="bkk"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve"><path d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+			c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+			L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+			c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+			c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+			C492,219.198,479.172,207.418,464.344,207.418z"/></svg></a>
+							
+							<!--<a href="#" class="bky"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path d="M382.56,233.376C379.968,227.648,374.272,224,368,224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832,0-16,7.168-16,16v208h-64
+			c-6.272,0-11.968,3.68-14.56,9.376c-2.624,5.728-1.6,12.416,2.528,17.152l112,128c3.04,3.488,7.424,5.472,12.032,5.472
+			c4.608,0,8.992-2.016,12.032-5.472l112-128C384.192,245.824,385.152,239.104,382.56,233.376z"/><path d="M432,352v96H80v-96H16v128c0,17.696,14.336,32,32,32h416c17.696,0,32-14.304,32-32V352H432z"/></svg></a>-->
+							
+						</div>
+					</div>
+					<div class="globalOverlay animated"></div>
+					<div class="over-filme globalFilter animated" style="display: none;">
+						<div class="rats">&nbsp;</div>
+						<div class="ratio-hd">
+							<a class="play"></a>
+							<div class="plays"></div>
+							<div class="shhad"></div>
+							
+						</div>
+						
+							<div class="caption">
+								<div class="name"></div>
+								<div class="category"></div>
+								<div class="info1">
+									<span class="votos"></span>
+									<span class="ano"></span>
+									<span class="duracao"></span>
+									<div class="idiomas">
+										<span class="nac">NAC</span>
+										<span class="dub">DUB</span>
+										<span class="leg">LEG</span>
+									</div>
+								</div>
+								<div class="seeking">
+									<div class="bar">
+										<span style="width: 35%;"></span>
+									</div>
+									<div class="resta"></div>
+								</div>
+								<div class="others">
+									<p class="direcao"></p>
+									<p class="elenco"></p>
+									<p class="generos"></p>
+									
+								</div>
+								<div class="others">
+									<div class="sinopse"></div>
+								</div>
+								<div class="clear"></div>
+							</div>
+
+							<div class="shadLike" onClick="closeFlike();"></div>
+							<div class="noli" onClick="closeFlike();"></div>
+							<div class="linker">
+
+								<a href="#" class="global-lista nov">
+									<i></i>
+									Minha lista
+								</a>
+								<a href="javascript:void(0);" class="global-votos nov">
+									<div class="votar">
+										<div class="bhy">
+											<span class="bty like"></span>
+											<span class="bty unlike"></span>
+										</div>
+										<span onClick="javascript:closeFlike();" class="cVotar">x</span>
+									</div>
+									<b id="filmeVotar" style="display: block;">
+										<i></i>
+										Classifique
+									</b>
+								</a>
+								<a href="#"  class="global-share nov">
+									<i><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 525.152 525.152" style="enable-background:new 0 0 525.152 525.152;" xml:space="preserve"><path d="M420.735,371.217c-20.021,0-37.942,7.855-51.596,20.24L181.112,282.094c1.357-6.061,2.407-12.166,2.407-18.468   c0-6.302-1.072-12.385-2.407-18.468l185.904-108.335c14.179,13.129,32.931,21.334,53.719,21.334   c43.828,0,79.145-35.251,79.145-79.079C499.88,35.338,464.541,0,420.735,0c-43.741,0-79.079,35.338-79.079,79.057   c0,6.389,1.072,12.385,2.407,18.468L158.158,205.947c-14.201-13.194-32.931-21.378-53.741-21.378   c-43.828,0-79.145,35.317-79.145,79.057s35.317,79.079,79.145,79.079c20.787,0,39.54-8.206,53.719-21.334l187.698,109.604   c-1.291,5.58-2.101,11.4-2.101,17.199c0,42.45,34.594,76.979,76.979,76.979c42.428,0,77.044-34.507,77.044-76.979   S463.163,371.217,420.735,371.217z" ></path></svg></i>
+									Comparilhe
+								</a>
+								<a href="#" class="global-trailer nov">
+									<i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -71 511.99921 511"><path d="m255.980469 370.492188c-.042969 0-.089844 0-.136719 0-15.449219-.105469-152.027344-1.351563-190.722656-11.816407-27.042969-7.269531-48.390625-28.59375-55.679688-55.640625-10.125-38.011718-9.4804685-111.195312-9.410156-117.039062-.0664062-5.816406-.71875-79.605469 9.378906-117.929688.011719-.035156.019532-.074218.03125-.109375 7.207032-26.738281 29.035156-48.722656 55.613282-56.011719.066406-.019531.136718-.035156.203124-.054687 38.257813-10.054687 175.105469-11.285156 190.585938-11.390625h.277344c15.488281.105469 152.429687 1.351562 190.769531 11.832031 26.992187 7.257813 48.339844 28.578125 55.628906 55.625 10.492188 38.277344 9.511719 112.269531 9.410157 118.480469.015624 1.375.066406 6.988281-.023438 15.273438-.121094 10.972656-9.050781 19.785156-19.996094 19.785156-.074218 0-.144531 0-.21875-.003906-11.046875-.117188-19.902344-9.167969-19.785156-20.210938.097656-8.859375.023438-14.574219.023438-14.632812-.003907-.207032 0-.417969 0-.628907.367187-20.445312-.351563-79.636719-8.007813-107.570312-3.617187-13.410157-14.144531-23.921875-27.5-27.511719-28.269531-7.730469-139.691406-10.152344-180.441406-10.4375-40.738281.285156-152.03125 2.644531-180.457031 10.050781-13.097657 3.632813-23.863282 14.519531-27.453126 27.773438-8.890624 33.828125-8.050781 106.679687-8.042968 107.410156v.527344c-.265625 20.203125.667968 78.710937 8.046875 106.421875 3.578125 13.269531 14.105469 23.78125 27.457031 27.375 28.550781 7.722656 139.789062 10.148437 180.445312 10.433594 40.761719-.285157 152.164063-2.644532 180.503907-10.0625 13.324219-3.605469 23.828125-14.105469 27.417969-27.417969 2.875-10.664063 13.851562-16.980469 24.515624-14.101563 10.664063 2.875 16.980469 13.847656 14.105469 24.515625-7.292969 27.042969-28.636719 48.367188-55.710937 55.648438-.035156.007812-.074219.019531-.109375.027343-38.253907 10.054688-175.105469 11.285157-190.582031 11.390626-.042969 0-.089844 0-.136719 0zm-22.640625-110.523438 102.160156-58.972656c5.875-3.394532 9.5-9.6875 9.5-16.5s-3.625-13.105469-9.5-16.5l-102.160156-58.972656c-5.855469-3.378907-13.058594-3.367188-18.898438.035156-5.84375 3.398437-9.441406 9.671875-9.441406 16.460937v117.949219c0 6.789062 3.597656 13.0625 9.441406 16.464844 2.929688 1.707031 6.203125 2.5625 9.476563 2.5625 3.253906 0 6.503906-.84375 9.421875-2.527344zm0 0" ></path></svg></i>
+									Trailer
+								</a>
+								<div class="clear"></div>
+
+							</div>
+
+							<div class="recomendados">
+								<div class="fields" style="display: block;">
+									<h1><span></span><b>ASSISTA</b> TAMBÉM</h1>
+									<div class="" id="Frec"></div>
+								</div>
+							</div>
+					</div>
+					
+				</div>
+				
+				<!--PAGE SERIES -->
+				<div id="p-series" class="mPage animated">
+					<div id="getS" class="getCategory animated"></div>
+					<div id="getS-melhores" class="getCategory animated"></div>
+					<div id="getS-news" class="getCategory animated"></div>
+				</div>
+				
+				<!--PAGE Play SERIES -->
+				<div id="p-playseries" class="mPage animated">
+					
+					<div class="g-cast">
+						<a class="setCast" href="javascript:openCcast();">
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px"  viewBox="0 0 469.333 469.333" style="enable-background:new 0 0 469.333 469.333;" xml:space="preserve"><path d="M0,277.333V320c58.88,0,106.667,47.787,106.667,106.667h42.667C149.333,344.213,82.453,277.333,0,277.333z" ></path><path d="M0,362.667v64h64C64,391.36,35.307,362.667,0,362.667z" ></path><path d="M426.667,42.667h-384C19.093,42.667,0,61.76,0,85.333v64h42.667v-64h384V384H277.333v42.667h149.333     c23.573,0,42.667-19.093,42.667-42.667V85.333C469.333,61.76,450.24,42.667,426.667,42.667z" ></path><path d="M0,192v42.667c106.027,0,192,85.973,192,192h42.667C234.667,297.067,129.6,192,0,192z" fill="#FFF"></path></svg>
+						</a>
+					</div>
+					
+					<div class="minner-top">
+						<div class="rel1 oprth"></div>
+						<div class="rel2">
+							<a href="javascript:goBack();" class="bkk"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve"><path d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+			c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+			L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+			c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+			c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+			C492,219.198,479.172,207.418,464.344,207.418z"/></svg></a>
+							
+							
+							<!--<a href="#" class="bky"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path d="M382.56,233.376C379.968,227.648,374.272,224,368,224h-64V16c0-8.832-7.168-16-16-16h-64c-8.832,0-16,7.168-16,16v208h-64
+			c-6.272,0-11.968,3.68-14.56,9.376c-2.624,5.728-1.6,12.416,2.528,17.152l112,128c3.04,3.488,7.424,5.472,12.032,5.472
+			c4.608,0,8.992-2.016,12.032-5.472l112-128C384.192,245.824,385.152,239.104,382.56,233.376z"/><path d="M432,352v96H80v-96H16v128c0,17.696,14.336,32,32,32h416c17.696,0,32-14.304,32-32V352H432z"/></svg></a>-->
+							
+						</div>
+					</div>
+					
+					<div class="serieJson" style="display: none;"></div>
+					<input type="hidden" id="current" value="0">
+					<input type="hidden" id="seek" value="0">
+					
+					<div class="globalOverlay animated"></div>
+					<div class="over-filme globalFilter animated" style="display: none;">
+						<div class="rats">&nbsp;</div>
+						<div class="ratio-hd">
+							<a class="play"></a>
+							<div class="plays"></div>
+							<div class="shhad"></div>
+
+						</div>
+						
+						<div class="caption">
+							<div class="name"></div>
+							<div class="category"></div>
+							<div class="seekingk">
+								<div class="seek">
+									<span class="named" style="font-size: 20px; text-transform: uppercase;"></span>
+									<span class="resta" style="font-size: 12px; width: 115px; white-space: nowrap; text-align: right;"></span>
+								</div>
+								<div style="padding-right: 120px; padding-top: 5.5px;">
+									<div class="bar">
+										<span></span>
+									</div>
+								</div>
+							</div>
+							
+							<div class="info1">
+								<span class="votos"></span>
+								<span class="ano"></span>
+								<span class="duracao"></span>
+								<span class="res"></span>
+							</div>
+							
+							<div class="mess"></div>
+							
+							
+							<div class="others">
+								<p class="direcao"></p>
+								<p class="elenco"></p>
+								<p class="generos"></p>
+							</div>
+							<div class="others">
+							
+								<div class="sinopse"></div>
+							</div>
+							<div class="clear"></div>
+						</div>
+						
+						<div class="shadLike" onClick="closeSlike();"></div>
+						<div class="noli" onClick="closeSlike();"></div>
+						<div class="linker">
+							
+							<a href="#" class="global-lista nov">
+								<i></i>
+								Minha lista
+							</a>
+							<a href="javascript:void(0);" class="global-votos nov">
+								<div class="votar">
+									<div class="bhy">
+										<span class="bty like"></span>
+										<span class="bty unlike"></span>
+									</div>
+									<span onClick="javascript:closeSlike();" class="cVotar">x</span>
+								</div>
+								<b id="serieVotar" style="display: block;">
+									<i></i>
+									Classifique
+								</b>
+							</a>
+							<a href="#"  class="global-share nov">
+								<i><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 525.152 525.152" style="enable-background:new 0 0 525.152 525.152;" xml:space="preserve"><path d="M420.735,371.217c-20.021,0-37.942,7.855-51.596,20.24L181.112,282.094c1.357-6.061,2.407-12.166,2.407-18.468   c0-6.302-1.072-12.385-2.407-18.468l185.904-108.335c14.179,13.129,32.931,21.334,53.719,21.334   c43.828,0,79.145-35.251,79.145-79.079C499.88,35.338,464.541,0,420.735,0c-43.741,0-79.079,35.338-79.079,79.057   c0,6.389,1.072,12.385,2.407,18.468L158.158,205.947c-14.201-13.194-32.931-21.378-53.741-21.378   c-43.828,0-79.145,35.317-79.145,79.057s35.317,79.079,79.145,79.079c20.787,0,39.54-8.206,53.719-21.334l187.698,109.604   c-1.291,5.58-2.101,11.4-2.101,17.199c0,42.45,34.594,76.979,76.979,76.979c42.428,0,77.044-34.507,77.044-76.979   S463.163,371.217,420.735,371.217z" ></path></svg></i>
+								Comparilhe
+							</a>
+							
+							<div class="clear"></div>
+
+						</div>
+						
+						<div class="tempora">
+							<div class="fields" style="display: block;">
+								<h1 class="nTemp" onClick="openTemporadas();"><span></span><div></div><pre><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 451.847 451.847" style="enable-background:new 0 0 451.847 451.847;" xml:space="preserve"><path d="M225.923,354.706c-8.098,0-16.195-3.092-22.369-9.263L9.27,151.157c-12.359-12.359-12.359-32.397,0-44.751   c12.354-12.354,32.388-12.354,44.748,0l171.905,171.915l171.906-171.909c12.359-12.354,32.391-12.354,44.744,0   c12.365,12.354,12.365,32.392,0,44.751L248.292,345.449C242.115,351.621,234.018,354.706,225.923,354.706z"></path></svg></pre></h1>
+							</div>
+							<div class="" id="ssTempradas"></div>
+						</div>
+					</div>
+				</div>
+				
+				<!--TV -->
+				<div id="p-tv" class="mPage animated peg-page ">
+					<div id="adultPinn" class="showPin">
+						<div class="nada-aqui">
+							<div id="emptyH" class="nada-aqui"><div class="sv"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  x="0px" y="0px" viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve"><path d="M36,14c0-3.309-2.691-6-6-6s-6,2.691-6,6v1c0,0.553,0.448,1,1,1s1-0.447,1-1v-1c0-2.206,1.794-4,4-4s4,1.794,4,4v7H19v19   h22V21h-5V14z M39,38H21V23h18V38z"></path><path d="M30,25c-2.206,0-4,1.794-4,4c0,1.859,1.28,3.411,3,3.858V35c0,0.553,0.448,1,1,1s1-0.447,1-1v-2.142   c1.72-0.447,3-1.999,3-3.858C34,26.794,32.206,25,30,25z M30,31c-1.103,0-2-0.897-2-2s0.897-2,2-2s2,0.897,2,2S31.103,31,30,31z"></path><path d="M30,0C15.112,0,3,12.112,3,27c0,14.109,10.881,25.719,24.691,26.895l-4.398,4.398c-0.391,0.391-0.391,1.023,0,1.414   C23.488,59.902,23.744,60,24,60s0.512-0.098,0.707-0.293l5.999-5.999c0.093-0.092,0.166-0.203,0.217-0.326   c0.101-0.244,0.101-0.52,0-0.764c-0.051-0.123-0.124-0.233-0.217-0.326l-5.999-5.999c-0.391-0.391-1.023-0.391-1.414,0   s-0.391,1.023,0,1.414l4.164,4.164C14.862,50.593,5,39.927,5,27C5,13.215,16.215,2,30,2s25,11.215,25,25   c0,6.633-2.57,12.881-7.238,17.593c-0.389,0.393-0.386,1.026,0.007,1.415c0.392,0.387,1.025,0.385,1.414-0.007   C54.224,40.911,57,34.163,57,27C57,12.112,44.888,0,30,0z"></path></svg></div><div class="nprim">Para acessa os videos de conteúdo adulto você precisa desbloquear com seu PIN.</div>
+								<input onKeyUp="adultPinn();" type="password" maxlength="4" placeholder="&#8226;&#8226;&#8226;&#8226;" class="pinner" pattern="[0-9]*" inputmode="numeric"/>
+								<a href="#perfil" class="navicat">Esqueceu seu PIN</a>
+							
+							</div>
+						</div>
+					</div>
+					<div id="getT" class="getCategory animated"></div>
+				</div>
+				
+				
+				<!--PAGE Play TV -->
+				<div id="p-playTv" class="mPage animated">
+					<div class="g-cast">
+						<a class="setCast" href="javascript:openCcast();">
+							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px"  viewBox="0 0 469.333 469.333" style="enable-background:new 0 0 469.333 469.333;" xml:space="preserve"><path d="M0,277.333V320c58.88,0,106.667,47.787,106.667,106.667h42.667C149.333,344.213,82.453,277.333,0,277.333z" ></path><path d="M0,362.667v64h64C64,391.36,35.307,362.667,0,362.667z" ></path><path d="M426.667,42.667h-384C19.093,42.667,0,61.76,0,85.333v64h42.667v-64h384V384H277.333v42.667h149.333     c23.573,0,42.667-19.093,42.667-42.667V85.333C469.333,61.76,450.24,42.667,426.667,42.667z" ></path><path d="M0,192v42.667c106.027,0,192,85.973,192,192h42.667C234.667,297.067,129.6,192,0,192z" fill="#FFF"></path></svg>
+						</a>
+					</div>
+					<div class="minner-top">
+						<div class="rel1 oprth"></div>
+						<div class="rel2">
+							<a href="javascript:goBack();" class="bkk"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve"><path d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+			c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+			L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+			c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+			c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+			C492,219.198,479.172,207.418,464.344,207.418z"/></svg></a>
+						</div>
+					</div>
+					<div class="globalOverlay animated"></div>
+					<div class="over-filme globalFilter animated" style="display: none;">
+					
+						<div class="ratio-hd cinema">
+							<a class="play"></a>
+							<div class="plays"></div>
+							<div class="shhad"></div>
+						</div>
+						
+						<div class="caption tvv">
+							<div class="name"></div>
+						</div>
+						
+						<div class="inDts" style="overflow: hidden;"></div>
+						<div class="tvCaption">
+							<div class="progrloader"></div>
+							<div class="category-progr"></div>
+							<div class="none-progr"><p>Programação<br>Indisponível</p></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				
+				
+				
+				<!--ADULTO -->
+				<div id="p-adulto" class="mPage animated peg-page">
+					
+					<div id="adultPage">
+						<div class="search-preloader"><i class="preload"></i></div>	
+						<div id="p-adulter">
+							
+							<div class="adult-s">
+								<div class="t">Pesquisar Video</div>
+								<form class="r">
+									<input type="text" id="ss" placeholder="Digite o titulo aqui!" />
+									<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 319.314 319.314" style="enable-background:new 0 0 319.314 319.314;" xml:space="preserve"><path d="M70.996,71.029c-35.282,35.282-35.282,92.689,0,127.972l14.143-14.143c-27.484-27.483-27.484-72.203,0-99.687
+				L70.996,71.029z"></path><path d="M254.106,198.578c27.21-51.06,19.33-116.051-23.653-159.034C204.951,14.044,171.046,0,134.982,0
+				c-36.063,0-69.969,14.044-95.47,39.544c-52.642,52.643-52.642,138.298,0,190.94c25.501,25.5,59.407,39.545,95.47,39.545
+				c22.556,0,44.268-5.495,63.607-15.849l65.135,65.134l55.559-55.558L254.106,198.578z M134.982,250.03
+				c-30.721,0-59.604-11.964-81.328-33.687C8.81,171.499,8.81,98.531,53.654,53.687C75.378,31.963,104.261,20,134.982,20
+				c30.722,0,59.604,11.963,81.328,33.687c44.844,44.845,44.844,117.812,0,162.656C194.586,238.066,165.704,250.03,134.982,250.03z
+				 M215.85,243.157c5.116-3.843,9.998-8.068,14.602-12.672c4.63-4.63,8.843-9.52,12.659-14.615l47.887,47.887l-27.274,27.274
+				L215.85,243.157z"></path></svg>
+									<input type="submit" style="display: none;" id="adtS">
+								</form>
+							</div>
+							<div class="list-adulter">
+								
+								
+							</div>
+						</div>
+					</div>
+					<div id="adultPin" class="showPin">
+						<div class="nada-aqui">
+							<div id="emptyH" class="nada-aqui"><div class="sv"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  x="0px" y="0px" viewBox="0 0 60 60" style="enable-background:new 0 0 60 60;" xml:space="preserve"><path d="M36,14c0-3.309-2.691-6-6-6s-6,2.691-6,6v1c0,0.553,0.448,1,1,1s1-0.447,1-1v-1c0-2.206,1.794-4,4-4s4,1.794,4,4v7H19v19   h22V21h-5V14z M39,38H21V23h18V38z"></path><path d="M30,25c-2.206,0-4,1.794-4,4c0,1.859,1.28,3.411,3,3.858V35c0,0.553,0.448,1,1,1s1-0.447,1-1v-2.142   c1.72-0.447,3-1.999,3-3.858C34,26.794,32.206,25,30,25z M30,31c-1.103,0-2-0.897-2-2s0.897-2,2-2s2,0.897,2,2S31.103,31,30,31z"></path><path d="M30,0C15.112,0,3,12.112,3,27c0,14.109,10.881,25.719,24.691,26.895l-4.398,4.398c-0.391,0.391-0.391,1.023,0,1.414   C23.488,59.902,23.744,60,24,60s0.512-0.098,0.707-0.293l5.999-5.999c0.093-0.092,0.166-0.203,0.217-0.326   c0.101-0.244,0.101-0.52,0-0.764c-0.051-0.123-0.124-0.233-0.217-0.326l-5.999-5.999c-0.391-0.391-1.023-0.391-1.414,0   s-0.391,1.023,0,1.414l4.164,4.164C14.862,50.593,5,39.927,5,27C5,13.215,16.215,2,30,2s25,11.215,25,25   c0,6.633-2.57,12.881-7.238,17.593c-0.389,0.393-0.386,1.026,0.007,1.415c0.392,0.387,1.025,0.385,1.414-0.007   C54.224,40.911,57,34.163,57,27C57,12.112,44.888,0,30,0z"></path></svg></div><div class="nprim">Para acessa os videos de conteúdo adulto você precisa desbloquear com seu PIN.</div>
+								<input onKeyUp="adultPin();" type="password" maxlength="4" placeholder="&#8226;&#8226;&#8226;&#8226;" class="pinner" pattern="[0-9]*" inputmode="numeric"/>
+								<a href="#perfil" class="navicat">Esqueceu seu PIN</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!--CONTA -->
+				
+				<div id="p-conta" class="mPage animated peg-page" data-direction="left">
+					<div class="padrao-top">
+							<div class="rel2">
+								<a href="javascript:goBack();" class="bkk"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+		 viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve"><path d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+				c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+				L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+				c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+				c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+				C492,219.198,479.172,207.418,464.344,207.418z"/></svg></a>
+								Meu perfil
+							</div>
+						</div>
+					<div class="top-conta">
+						<img class="picEu" />
+						<div class="nname"></div>
+						<a href="javascript:deslog();">Deslogar</a>
+					</div>
+					
+					<div class="tituloss">
+						<div class="llet">MINHA ATIVIDADE</div>
+						
+						<div class="top11">
+							<div class="divv"><a href="#creditos" class="bxx active"><span class="nCredit">0</span>Créditos</a></div>
+							<div class="divv"><a href="#historico" class="bxx"><span class="nHist">0</span>Histórico</a></div>
+							<div class="divv"><a href="#lista" class="bxx "><span class="nList">0</span>Minha Lista</a></div>
+							<div class="clear"></div>
+						</div>
+						<div class="llet">CONFIGURAÇÔES DA CONTA</div>
+					</div>
+					
+					
+					
+					<div class="page-conta">
+						
+						<div class="links-perfil"></div>
+						<ul class="lista-conta">
+							<li class="lista" data-lang="morePerfil"><a class="l-config" href="javascript:void(0);" data-lang="morePerfil">Editar perfil<span id="morPerfil">&nbsp;</span></a></li>
+							<div class="config-page moreToggle" id="morePerfil">
+								<div class="preload"></div>
+								<form class="nPerf" style="padding-top: 25px; padding-bottom: 25px;">
+									<label class="input animated" id="l-quatro">
+										Seu nome:
+										<input id="nome" autocomplete="off" type="text" required="" placeholder="Nome:">
+									</label>
+									<label class="input animated" id="l-cinco">
+										Seu gênero:
+										<select id="gender" required>
+											<option value="1">eu sou:</option>
+											<option value="male">Homem</option>
+											<option value="female">Mulher</option>
+										</select>
+									</label>
+									<label class="input animated" id="l-seis">
+										Seu Email:
+										<input id="log" autocomplete="off" type="email" required="" placeholder="Email:" style="margin-bottom:10px;">
+									</label>
+									<label class="input animated" id="l-sete">
+										Sua senha atual:
+										<input id="pass" autocomplete="off" type="password" required="" placeholder="Senha:" maxlength="12">
+									</label>
+									<div style="padding: 0 5px;"><input class="subPerfil" type="submit" value="Editar conta"></div>
+								</form>
+							</div>
+
+							<li class="lista" data-lang="moreSenha"><a class="l-config" href="javascript:void(0);" data-lang="moreSenha">Alterar senha<span id="morSenha">&nbsp;</span></a></li>
+							<div class="config-page moreToggle" id="moreSenha">
+								<div class="preload"></div>
+								<form class="nSenh" style="padding-top: 25px; padding-bottom: 25px;">
+									<label class="input animated" id="l-oito">
+										Sua senha atual:
+										<input id="pass1" autocomplete="off" type="password" required="" maxlength="12">
+									</label>
+
+									<label class="input animated" id="l-nove">
+										Nova senha:
+										<input id="pass2" autocomplete="off" type="password" required="" maxlength="12">
+									</label>
+
+									<label class="input animated" id="l-dez">
+										Confirme a nova senha:
+										<input id="pass3" autocomplete="off" type="password" required="" maxlength="12">
+									</label>
+									<div style="padding: 0 5px;"><input class="subSenha" type="submit" value="Alterar senha"></div>
+								</form>
+							</div>
+
+							<li class="lista" data-lang="moreDevices"><a class="l-config" href="javascript:void(0);" data-lang="moreDevices">Dispositivos<span id="morDevices">&nbsp;</span></a></li>
+							<div class="config-page moreToggle" id="moreDevices">
+								<div class="preload"></div>
+								<div class="nDevi"></div>
+								<form class="AddDevice">
+									<div class="title">Ative seu aparelho</div>
+									<p>Digite o código de 6 digitos</p>
+									<input class="nDevice animated" placeholder="Inira o código..." type="number" min="0" max="999999" />
+									<input class="subDevice" type="submit" value="Ativar"/>
+								</form>
+							</div>
+							<div id="descPlanos">
+							
+								<li class="lista" data-lang="moreDisplay"><a class="l-config" href="javascript:void(0);" data-lang="moreDisplay" href="javascript:void(0);">Plano <i id="displayPlano" class="plann"></i><span id="morDisplay"></span></a></li>
+								<div class="config-page moreToggle descPlans" id="moreDisplay">
+
+								</div>
+								<li class="lista" data-lang="moreAlter"><a class="l-config" href="javascript:void(0);" data-lang="moreAlter" href="javascript:void(0);">Mais Planos</i><span id="morAlter"></span></a></li>
+								<div class="config-page moreToggle allPlanos" id="moreAlter" style="padding-left: 25px; padding-right: 25px;"></div>
+
+
+								<div id="congif-plano" style="display: none;">
+									
+									<li class="lista" data-lang="morePlaylist"><a class="l-config" href="javascript:void(0);" data-lang="morePlaylist" href="javascript:void(0);">Playlist m3u</i><span id="morPlaylist"></span></a></li>
+									<div class="config-page moreToggle" id="morePlaylist">
+										<div class="pls">
+											<textarea readonly onclick="clipboard('playlist-corp');" rows="3" class="input2" id="playlist-corp"></textarea>
+											<a href="#" class="playRR">Download m3u</a>
+										</div>
+									</div>
+									
+									
+									
+									<li class="lista" data-lang="moreQuality"><a class="l-config" href="javascript:void(0);" data-lang="moreQuality" href="javascript:void(0);">Configurar PIN</i><span id="morQuality"></span></a></li>
+									<div class="config-page moreToggle allPlanos" id="moreQuality">
+
+										<form class="nSenh" style="padding-top: 25px; padding-bottom: 25px;">
+											<label class="input animated" id="l-vinte">
+												Novo PIN
+												<input id="pin1" autocomplete="off" type="password" required="" maxlength="4" placeholder="••••" inputmode="numeric" pattern="[0-9]*">
+											</label>
+											<label class="input animated" id="l-vinteum">
+												Sua senha atual:
+												<input id="pass5" autocomplete="off" type="password" required="" maxlength="12">
+											</label>
+											<div style="padding: 0 5px;"><input class="subPin" type="submit" value="Alterar PIN"></div>
+										</form>
+
+									</div>
+								</div>
+
+							</div>
+							
+							<!--<li class="lista" data-lang="moreAtividades"><a class="l-config" href="javascript:void(0);" data-lang="moreAtividades">Gerenciar atividade<span id="morAtividades">&nbsp;</span></a></li>
+							<div class="config-page moreToggle" id="moreAtividades">
+								<div class="preload"></div>
+								<div class="nAtiv">
+									<a href="javascript:delAllL();" class="delet">Limpar minha lista</a>
+									<a href="javascript:delAllH();" class="delet">Limpar histórico</a>
+								</div>
+							</div> -->
+						</ul>
+						
+					</div>
+					
+					
+				</div>
+				
+			
+				<!--HISTORICO-->
+				<div id="p-historico" class="mPage animated peg-page" data-direction="left">
+					<div class="padrao-top">
+						<div class="rel2">
+							<a href="javascript:goBack();" class="bkk"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve"><path d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+			c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+			L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+			c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+			c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+			C492,219.198,479.172,207.418,464.344,207.418z"/></svg></a>
+							Meu histórico
+						</div>
+					</div>
+					<div class="topload3"></div>		
+					<ul class="historico"></ul>
+				</div>
+				
+				<!--MINHA LISTA-->
+				<div id="p-lista" class="mPage animated peg-page" data-direction="left">
+					<div class="padrao-top">
+						<div class="rel2">
+							<a href="javascript:goBack();" class="bkk"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve"><path d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+			c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+			L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+			c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+			c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+			C492,219.198,479.172,207.418,464.344,207.418z"/></svg></a>
+							Minha lista
+						</div>
+					</div>
+					<div class="topload2"></div>
+					<ul class="listaa"></ul>
+				</div>
+				
+				<!--NOVIDADES-->
+				<div id="p-novidades" class="mPage animated" data-direction="left">
+					<div class="novid-top">
+						<div class="rel2">
+							<a href="javascript:goBack();" class="bkk"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve"><path d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+			c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+			L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+			c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+			c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+			C492,219.198,479.172,207.418,464.344,207.418z"/></svg></a>
+							<i class="nov1">Novidades</i>
+						</div>
+					</div>
+					<div class="novidd">
+						<div class="div nov2"><b>Atualizações recentes</b>acompanhe nossas novidades</div>
+					</div>
+					<ul class="novidades"></ul>
+					
+					<div class="search-preloader"><i class="preload"></i></div>		
+					<ul class="historico"></ul>
+				</div>
+	
+	
+				<!--Notícias-->
+				<div id="p-noticias" class="mPage animated" data-direction="left">
+					<div class="novid-top">
+						<div class="rel2">
+							<a id="notV" href="javascript:goBack();" class="bkk"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve"><path d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+			c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+			L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+			c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+			c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+			C492,219.198,479.172,207.418,464.344,207.418z"/></svg></a>
+							<i class="nov1">Notícias</i>
+						</div>
+					</div>
+					<div class="novidd">
+						<div class="div nov2"><b>Fique atualizado</b>acompanhe tudo que acontece no universo do cinema</div>
+					</div>
+					<ul id="sNews" class="noticias">
+						
+					</ul>
+					
+					<div class="search-preloader"><i class="preload"></i></div>		
+					<ul class="historico"></ul>
+				</div>
+				
+				<div id="p-ganhar" class="mPage animated" style="padding-bottom: 20px;" data-direction="left">
+					<div class="padrao-top">
+						<div class="rel2">
+							<a href="javascript:goBack();" class="bkk"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve"><path d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+			c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+			L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+			c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+			c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+			C492,219.198,479.172,207.418,464.344,207.418z"/></svg></a>
+							Ganhar crétidos
+						</div>
+					</div>
+					<div class="search-preloader"><i class="preload"></i></div>		
+					
+					<div class="ganhe">
+						<i><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><path d="M46.026,271h-31c-8.291,0-15,6.709-15,15v211c0,8.291,6.709,15,15,15h31c24.814,0,45-20.186,45-45V316
+			C91.026,291.186,70.84,271,46.026,271z"/><path d="M256.026,0c-90.981,0-165,75.019-165,166c0,31.027,8.648,60.859,24.553,86.576c20.151-11.246,42.537-17.465,65.77-17.465
+			c31.9,0,64.132,11.162,91.479,35.889h74.198c10.856,0,20.856,3.223,29.65,8.284c28.026-29.586,45.35-69.41,45.35-113.284
+			C422.026,75.019,347.007,0,256.026,0z M256.027,121c24.814,0,45,20.186,45,45c0,18.12-10.781,34.395-27.466,41.455
+			c-0.829,0.352-1.694,0.489-2.534,0.787V226c0,8.291-6.709,15-15,15s-15-6.709-15-15v-17.717
+			c-7.784-2.62-15.331-7.015-22.104-13.572c-5.947-5.757-6.094-15.249-0.322-21.211c5.757-5.947,15.278-6.079,21.211-0.322
+			c7.28,7.046,15.322,9.492,22.046,6.65c5.566-2.358,9.17-7.778,9.17-13.828c0-8.276-6.724-15-15-15c-24.814,0-45-20.186-45-45
+			c-0.002-18.853,11.893-35.845,29.603-42.29c0.13-0.048,0.266-0.026,0.396-0.071V45c0-8.291,6.709-15,15-15c8.291,0,15,6.709,15,15
+			v18.465c9.891,3.333,19.336,9.941,27.437,19.596c5.332,6.343,4.512,15.806-1.846,21.123c-6.328,5.347-15.82,4.526-21.123-1.846
+			c-7.939-9.434-16.89-13.228-24.595-10.444c-5.903,2.153-9.873,7.822-9.873,14.106C241.027,114.276,247.751,121,256.027,121z"/><path d="M499.727,276.7c-12.301-9-29.401-7.2-39.6,3.9l-81,100.8c-5.7,6-16.5,9.6-22.2,9.6H256.026c-8.401,0-15-6.599-15-15
+			s6.599-15,15-15c67.2,0,16.3,0,91,0c16.5,0,30-13.5,30-30s-13.5-30-30-30c-70.446,0-4.25,0-79.6,0
+			c-7.476,0-11.204-4.741-17.1-9.901c-9-8.099-19.2-14.099-29.7-18.3c-32.509-13.275-70.073-9.258-99.6,11.276
+			c0,54.619,0,136.005,0,197.924h226c28.2,0,55.201-14.5,72.001-37l86.999-126C515.927,305.799,513.226,286.6,499.727,276.7z"/></svg></i>
+						<p>Para ganhar créditos clique no botão abaixo e ao carregar o video assista até o final!</p>
+						<div>
+							<a class="ovh" href="javascript:crediit();">Ganhar crédito</a>
+							<a style="display: none;" class="ovh2" href="javascript:void(0);">Aguarde...</a>
+						</div>
+					</div>
+					
+					
+				</div>
+	
+				<!--CREDITOS -->
+				<div id="p-creditos" class="mPage animated" data-direction="left">
+					<div class="padrao-top">
+						<div class="rel2">
+							<a href="javascript:goBack();" class="bkk"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve"><path d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+			c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+			L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+			c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+			c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+			C492,219.198,479.172,207.418,464.344,207.418z"/></svg></a>
+							Solicitar titulo
+						</div>
+					</div>
+					<div class="search-preloader"><i class="preload"></i></div>		
+					<div class="titulos">
+						<div class="top1">
+							<div class="div"><div class="bx"><span class="nCredit">0</span>Créditos</div></div>
+							<div class="div"><a href="#creditos?4" id="bx4" class="bx"><span class="myPed">0</span>Pedidos</a></div>
+							<div class="div"><a href="#creditos?1" id="bx1" class="bx"><span>50</span>Top 50</a></div>
+							<div class="clear"></div>
+						</div>
+						<div class="top2">
+							<div class="div">
+								
+								<a href="javascript:crediit();" class="bx ovh">
+									<i>								
+									<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 302.407 302.407" style="enable-background:new 0 0 302.407 302.407;" xml:space="preserve"><path d="M288.244,186.169c-7.196-7.195-17.376-9.791-26.728-7.769c8.316-16.588,13.006-35.295,13.006-55.079
+			C274.522,55.321,219.201,0,151.201,0S27.881,55.321,27.881,123.32c0,26.492,8.398,51.058,22.67,71.179
+			c-11.905,1.762-22.933,7.636-31.038,16.732c-8.929,10.021-13.847,22.933-13.847,36.355v28.805c0,4.49,3.31,8.293,7.757,8.914
+			l112.091,15.634c7.03,0.98,14.062,1.468,21.059,1.468c24.172,0,47.918-5.812,69.655-17.162
+			c7.192-3.755,14.166-8.147,20.728-13.055c14.189-10.611,27.83-22.246,40.544-34.579l10.432-10.12
+			c5.62-5.452,8.748-12.766,8.808-20.596C296.8,199.065,293.781,191.706,288.244,186.169z M45.881,123.321
+			C45.881,65.247,93.127,18,151.201,18c58.074,0,105.321,47.247,105.321,105.32c0,52.631-38.805,96.369-89.306,104.105h-0.984
+			l11.244-4.917c0.234-0.103,0.464-0.215,0.688-0.337c15.112-8.207,21.179-26.807,13.811-42.345c-1.061-2.238-2.379-4.324-3.9-6.238
+			c2.709-5.479,4.239-11.641,4.239-18.155c0-19.577-13.76-35.992-32.113-40.108V69.92c8.286,3.516,14.113,11.734,14.113,21.288
+			c0,4.971,4.029,9,9,9c4.971,0,9-4.029,9-9c0-19.577-13.76-35.992-32.113-40.108v-8.47c0-4.971-4.029-9-9-9s-9,4.029-9,9v8.47
+			c-18.353,4.117-32.113,20.531-32.113,40.108c0,19.577,13.76,35.991,32.113,40.108v36.346l-7.728,3.694
+			c-3.951-4.149-6.385-9.756-6.385-15.923c0-4.971-4.029-9-9-9s-9,4.029-9,9c0,8.91,2.859,17.161,7.694,23.902l-30.584,14.621
+			l-14.062-0.012C56.207,175.249,45.881,150.469,45.881,123.321z M174.315,155.432c-0.001,2.655-0.456,5.204-1.283,7.579
+			c-0.18-0.061-0.357-0.129-0.538-0.186c-3.997-1.267-8.176-1.718-12.292-1.398v-27.283
+			C168.488,137.66,174.315,145.878,174.315,155.432z M142.201,69.92v42.576c-8.286-3.516-14.113-11.734-14.113-21.288
+			S133.915,73.436,142.201,69.92z M275.397,214.572l-10.432,10.12c-12.164,11.8-25.215,22.931-38.791,33.083
+			c-5.791,4.331-11.941,8.205-18.278,11.514c-24.687,12.89-52.315,17.668-79.896,13.823L23.665,268.56v-20.973
+			c0-9.001,3.298-17.66,9.287-24.381c6.385-7.167,15.55-11.275,25.149-11.275c0.009,0,0.019,0,0.028,0l31.098,0.027
+			c0.002,0,0.005,0,0.008,0c1.343,0,2.669-0.301,3.881-0.88l61.967-29.622c0.185-0.088,0.366-0.183,0.544-0.284
+			c3.519-1.986,7.575-2.408,11.428-1.188c3.851,1.221,6.925,3.904,8.656,7.554c3.226,6.802,0.657,14.925-5.841,18.65l-50.282,21.992
+			c-3.903,1.707-6.075,5.917-5.203,10.088c0.872,4.171,4.549,7.158,8.81,7.158h59.726c19.079,0,37.013-7.423,50.51-20.903
+			l26.664-25.758c4.289-4.142,11.207-4.083,15.422,0.133c2.1,2.101,3.244,4.893,3.222,7.863
+			C278.716,209.729,277.529,212.504,275.397,214.572z"/></svg>
+									</i>Ganhar Crédito
+								</a>
+								
+								<a href="javascript:void(0);" class="bx ovh2" style="display: none;">
+									<i>								
+									<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 302.407 302.407" style="enable-background:new 0 0 302.407 302.407;" xml:space="preserve"><path d="M288.244,186.169c-7.196-7.195-17.376-9.791-26.728-7.769c8.316-16.588,13.006-35.295,13.006-55.079
+			C274.522,55.321,219.201,0,151.201,0S27.881,55.321,27.881,123.32c0,26.492,8.398,51.058,22.67,71.179
+			c-11.905,1.762-22.933,7.636-31.038,16.732c-8.929,10.021-13.847,22.933-13.847,36.355v28.805c0,4.49,3.31,8.293,7.757,8.914
+			l112.091,15.634c7.03,0.98,14.062,1.468,21.059,1.468c24.172,0,47.918-5.812,69.655-17.162
+			c7.192-3.755,14.166-8.147,20.728-13.055c14.189-10.611,27.83-22.246,40.544-34.579l10.432-10.12
+			c5.62-5.452,8.748-12.766,8.808-20.596C296.8,199.065,293.781,191.706,288.244,186.169z M45.881,123.321
+			C45.881,65.247,93.127,18,151.201,18c58.074,0,105.321,47.247,105.321,105.32c0,52.631-38.805,96.369-89.306,104.105h-0.984
+			l11.244-4.917c0.234-0.103,0.464-0.215,0.688-0.337c15.112-8.207,21.179-26.807,13.811-42.345c-1.061-2.238-2.379-4.324-3.9-6.238
+			c2.709-5.479,4.239-11.641,4.239-18.155c0-19.577-13.76-35.992-32.113-40.108V69.92c8.286,3.516,14.113,11.734,14.113,21.288
+			c0,4.971,4.029,9,9,9c4.971,0,9-4.029,9-9c0-19.577-13.76-35.992-32.113-40.108v-8.47c0-4.971-4.029-9-9-9s-9,4.029-9,9v8.47
+			c-18.353,4.117-32.113,20.531-32.113,40.108c0,19.577,13.76,35.991,32.113,40.108v36.346l-7.728,3.694
+			c-3.951-4.149-6.385-9.756-6.385-15.923c0-4.971-4.029-9-9-9s-9,4.029-9,9c0,8.91,2.859,17.161,7.694,23.902l-30.584,14.621
+			l-14.062-0.012C56.207,175.249,45.881,150.469,45.881,123.321z M174.315,155.432c-0.001,2.655-0.456,5.204-1.283,7.579
+			c-0.18-0.061-0.357-0.129-0.538-0.186c-3.997-1.267-8.176-1.718-12.292-1.398v-27.283
+			C168.488,137.66,174.315,145.878,174.315,155.432z M142.201,69.92v42.576c-8.286-3.516-14.113-11.734-14.113-21.288
+			S133.915,73.436,142.201,69.92z M275.397,214.572l-10.432,10.12c-12.164,11.8-25.215,22.931-38.791,33.083
+			c-5.791,4.331-11.941,8.205-18.278,11.514c-24.687,12.89-52.315,17.668-79.896,13.823L23.665,268.56v-20.973
+			c0-9.001,3.298-17.66,9.287-24.381c6.385-7.167,15.55-11.275,25.149-11.275c0.009,0,0.019,0,0.028,0l31.098,0.027
+			c0.002,0,0.005,0,0.008,0c1.343,0,2.669-0.301,3.881-0.88l61.967-29.622c0.185-0.088,0.366-0.183,0.544-0.284
+			c3.519-1.986,7.575-2.408,11.428-1.188c3.851,1.221,6.925,3.904,8.656,7.554c3.226,6.802,0.657,14.925-5.841,18.65l-50.282,21.992
+			c-3.903,1.707-6.075,5.917-5.203,10.088c0.872,4.171,4.549,7.158,8.81,7.158h59.726c19.079,0,37.013-7.423,50.51-20.903
+			l26.664-25.758c4.289-4.142,11.207-4.083,15.422,0.133c2.1,2.101,3.244,4.893,3.222,7.863
+			C278.716,209.729,277.529,212.504,275.397,214.572z"/></svg>
+									</i>Aguarde...
+								</a>
+							
+							</div>
+							
+							
+							
+							
+							<div class="div"><a href="#creditos?2" id="bx2" class="bx"><i><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 434.168 434.168" style="enable-background:new 0 0 434.168 434.168;" xml:space="preserve"><path d="M332.318,230.196V34.967H40.93v364.235h134.038c9.616,0,17.483,7.867,17.483,17.483s-7.867,17.483-17.483,17.483H23.446
+		c-9.616,0-17.483-7.867-17.483-17.483V17.483C5.963,7.867,13.831,0,23.446,0h326.354c9.616,0,17.483,7.867,17.483,17.483v212.713
+		c0,9.616-7.867,17.483-17.483,17.483S332.318,239.812,332.318,230.196z M422.357,272.739c-7.285-6.411-18.357-5.828-24.768,1.457
+		l-95.867,106.648l-48.079-46.331c-6.993-6.702-18.066-6.411-24.768,0.583s-6.411,18.066,0.583,24.768l61.191,58.86
+		c3.205,3.205,7.576,4.954,12.238,4.954c0.291,0,0.291,0,0.583,0c4.662-0.291,9.324-2.331,12.238-5.828l107.814-120.052
+		C430.224,290.222,429.641,279.15,422.357,272.739z M268.212,101.986H110.863c-9.616,0-17.483,7.867-17.483,17.483
+		s7.867,17.483,17.483,17.483h157.349c9.616,0,17.483-7.867,17.483-17.483S277.828,101.986,268.212,101.986z M285.696,215.627
+		c0-9.616-7.867-17.483-17.483-17.483H110.863c-9.616,0-17.483,7.867-17.483,17.483c0,9.616,7.867,17.483,17.483,17.483h157.349
+		C277.828,233.11,285.696,225.243,285.696,215.627z M110.863,291.388c-9.616,0-17.483,7.867-17.483,17.483
+		c0,9.616,7.867,17.483,17.483,17.483h46.622c9.616,0,17.483-7.867,17.483-17.483c0-9.616-7.867-17.483-17.483-17.483H110.863z"/></svg></i>Como Solicitar?</a></div>
+							<div class="clear"></div>
+						</div>
+						
+						<div class="top3">
+							<form class="rb">
+								<input type="text" id="ssC" placeholder="Digite o titulo aqui!" />
+								<svg onclick="adtC();" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 319.314 319.314" style="enable-background:new 0 0 319.314 319.314;" xml:space="preserve"><path d="M70.996,71.029c-35.282,35.282-35.282,92.689,0,127.972l14.143-14.143c-27.484-27.483-27.484-72.203,0-99.687
+			L70.996,71.029z"></path><path d="M254.106,198.578c27.21-51.06,19.33-116.051-23.653-159.034C204.951,14.044,171.046,0,134.982,0
+			c-36.063,0-69.969,14.044-95.47,39.544c-52.642,52.643-52.642,138.298,0,190.94c25.501,25.5,59.407,39.545,95.47,39.545
+			c22.556,0,44.268-5.495,63.607-15.849l65.135,65.134l55.559-55.558L254.106,198.578z M134.982,250.03
+			c-30.721,0-59.604-11.964-81.328-33.687C8.81,171.499,8.81,98.531,53.654,53.687C75.378,31.963,104.261,20,134.982,20
+			c30.722,0,59.604,11.963,81.328,33.687c44.844,44.845,44.844,117.812,0,162.656C194.586,238.066,165.704,250.03,134.982,250.03z
+			 M215.85,243.157c5.116-3.843,9.998-8.068,14.602-12.672c4.63-4.63,8.843-9.52,12.659-14.615l47.887,47.887l-27.274,27.274
+			L215.85,243.157z"></path></svg>
+								<input type="submit" style="display: none;" id="adtC">
+							</form>
+						</div>
+						
+						<div class="padrao-4 ppg list-ped">
+						</div>
+						
+						<div class="padrao-3 ppg list-ped">
+							<i class="preload" style="display: block; margin: 20px auto;"></i>
+							<div class="busc-n" style="display: none;">
+								<div style="padding-top: 5px;" class="nada-aqui"><div class="sv"><svg version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 611.996 611.996" style="enable-background:new 0 0 611.996 611.996;" xml:space="preserve"><path d="M588.63,113.193L213.812,33.871c-15.858-3.355-31.576,6.876-34.931,22.734l-7.121,45.762l432.477,91.519l7.121-45.762
+			C614.713,132.272,604.488,116.549,588.63,113.193z"/><path d="M431.009,203.591c-4.378-15.766-20.854-25.085-36.615-20.714L323.24,202.63l-167.742-35.5l-18.448,87.165L21.786,286.287
+			c-15.76,4.372-25.079,20.848-20.708,36.609l64.958,234.078c4.378,15.76,20.855,25.085,36.615,20.708l372.608-103.403
+			c15.76-4.378,25.079-20.848,20.708-36.615l-11.15-40.184l41.789,8.835c15.858,3.361,31.576-6.87,34.931-22.728l26.439-124.937
+			L437.45,226.797L431.009,203.591z M474.04,322.559l9.215-43.552c1.384-6.521,7.85-10.727,14.37-9.35l43.552,9.221
+			c6.527,1.384,10.733,7.843,9.356,14.37l-9.215,43.552c-1.384,6.521-7.849,10.733-14.37,9.35l-43.552-9.215
+			C476.863,335.546,472.656,329.08,474.04,322.559z M28.27,309.646l103.115-28.606l243.299-67.517l26.181-7.274
+			c0.478-0.129,0.955-0.19,1.421-0.19c2.1,0,4.611,1.378,5.345,4.017l3.074,11.07l9.631,34.704L37.148,362.186l-12.705-45.768
+			C23.647,313.546,25.399,310.442,28.27,309.646z M472.601,444.141c0.49,1.776-0.024,3.245-0.545,4.164
+			c-0.514,0.918-1.506,2.119-3.282,2.608L96.173,554.316c-0.471,0.129-0.955,0.196-1.421,0.196c-2.1,0-4.611-1.384-5.345-4.023
+			L51.519,413.955l383.188-106.342l23.371,84.208L472.601,444.141z"/><path d="M156.379,453.484c-1.788-6.429-8.499-10.225-14.928-8.443l-43.515,12.08c-6.423,1.782-10.225,8.499-8.437,14.928
+			l12.074,43.509c1.788,6.429,8.499,10.225,14.928,8.437l43.515-12.074c6.429-1.782,10.225-8.499,8.443-14.928L156.379,453.484z"/></svg></div><div class="nprim">Pesquisar Filmes externos consome muitos recusos em nosso servidor. Para fazer uma pesquisa você precisa ter no mínimo 5 creditos (não debitaremos seus créditos).</div><a href="javascript:AdVideo();" class="navicat">Ganhar Crédito</a></div>
+							</div>
+							<div class="busc-p"></div>
+							
+						</div>
+						
+						<div class="padrao-2 ppg">
+							<div class="text-dark">
+								<h2>1&deg; - GANHAR CRÉDITOS</h2>
+								<p>Para fazer pedido você precisa de crédito, o crédito é grátis, em troca do nosso trabalho você abre um anúncio de video... dessa forma evitamos span e creditamos somente conteúdo que realmente vale a pena aqui no Top Flix TV.</p>
+								<h2>2&deg; - PESQUISAR</h2>
+								<p>Na barra de pesquisa você digita o título do filme ou seriado... ou ID do IMDB (melhor opção), quando encontrar você pode fazer pedido, se alguém já fez pedido você pode acrescentar 1 crédito no pedido, dessa forma o titulo será adicionado no Top Flix TV mais rápido!</p>
+								<h2>3&deg; - AGUARDAR</h2>
+								<p>A nossa esquipe vai adicionar os pedidos com mais creditos gastos! Para evitar SPAN e conteúdo que ninguém deseja, apenas postamos conteúdo com mais de 50 créditos. Mais não se preocupe você pode gastar quantos créditos quiser no seu pedido!</p>
+							</div>
+						</div>
+						
+						<ul class="padrao-1 ppg list-ped"></ul>
+						
+					</div>
+					
+				</div>
+				<!--PRIVACIDADES-->
+	
+				<div id="p-privacidade" class="mPage animated " data-direction="left">
+					<div class="padrao-top">
+						<div class="rel2">
+							<a href="javascript:goBack();" class="bkk"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 492 492" style="enable-background:new 0 0 492 492;" xml:space="preserve"><path d="M464.344,207.418l0.768,0.168H135.888l103.496-103.724c5.068-5.064,7.848-11.924,7.848-19.124
+			c0-7.2-2.78-14.012-7.848-19.088L223.28,49.538c-5.064-5.064-11.812-7.864-19.008-7.864c-7.2,0-13.952,2.78-19.016,7.844
+			L7.844,226.914C2.76,231.998-0.02,238.77,0,245.974c-0.02,7.244,2.76,14.02,7.844,19.096l177.412,177.412
+			c5.064,5.06,11.812,7.844,19.016,7.844c7.196,0,13.944-2.788,19.008-7.844l16.104-16.112c5.068-5.056,7.848-11.808,7.848-19.008
+			c0-7.196-2.78-13.592-7.848-18.652L134.72,284.406h329.992c14.828,0,27.288-12.78,27.288-27.6v-22.788
+			C492,219.198,479.172,207.418,464.344,207.418z"/></svg></a>
+							Privacidade e termos
+						</div>
+					</div>
+					<div class="search-preloader"><i class="preload"></i></div>		
+					
+					<div class="text-dark">
+						<h2>PRIVACIDADE</h2>
+						<p>Todas as suas informações pessoais recolhidas, serão usadas para o ajudar a tornar a sua experiência no nosso aplicativo o mais produtiva e agradável possível.</p>
+						<p>A garantia da confidencialidade dos dados pessoais dos utilizadores do nosso site é importante para o Top Flix TV.</p>
+						<p>Todas as informações pessoais relativas a membros, assinantes, clientes ou visitantes que usem o Top Flix TV serão tratadas em concordância com a Lei da Proteção de Dados Pessoais de 26 de outubro de 1998 (Lei n.º 67/98).</p>
+						<p>A informação pessoal recolhida pode incluir o seu nome, e-mail, número de telefone e/ou telemóvel, morada, data de nascimento e/ou outros.</p>
+						<p>O uso do Top Flix TV pressupõe a aceitação deste Acordo de privacidade. A equipa do Top Flix TV reserva-se ao direito de alterar este acordo sem aviso prévio. Deste modo, recomendamos que consulte a nossa política de privacidade com regularidade de forma a estar sempre atualizado.</p>
+						<h2>OS ANÚNCIOS</h2>
+						<p>Tal como outros websites, coletamos e utilizamos informação contida nos anúncios. A informação contida nos anúncios, inclui o seu endereço IP (Internet Protocol), o seu ISP (Internet Service Provider, como o Sapo, Clix, ou outro), o browser que utilizou ao visitar o nosso website (como o Internet Explorer ou o Firefox), o tempo da sua visita e que páginas visitou dentro do nosso website.</p>
+						<h2>COOKIE DOUBLECLICK DART</h2>
+						<p>O Google, como fornecedor de terceiros, utiliza cookies para exibir anúncios no nosso website;</p>
+						<p>Com o cookie DART, o Google pode exibir anúncios com base nas visitas que o leitor fez a outros websites na Internet;</p>
+						<p>Os utilizadores podem desativar o cookie DART visitando a Política de privacidade da rede de conteúdo e dos anúncios do Google.</p>
+						<h2>OS COOKIES E WEB BEACONS</h2>
+						<p>Utilizamos cookies para armazenar informação, tais como as suas preferências pessoas quando visita o nosso website. Isto poderá incluir um simples popup, ou uma ligação em vários serviços que providenciamos, tais como fóruns.</p>
+						<p>Em adição também utilizamos publicidade de terceiros no nosso website para suportar os custos de manutenção. Alguns destes publicitários, poderão utilizar tecnologias como os cookies e/ou web beacons quando publicitam no nosso website, o que fará com que esses publicitários (como o Google através do Google AdSense) também recebam a sua informação pessoal, como o endereço IP, o seu ISP, o seu browser, etc. Esta função é geralmente utilizada para geotargeting (mostrar publicidade de Lisboa apenas aos leitores oriundos de Lisboa por ex.) ou apresentar publicidade direcionada a um tipo de utilizador (como mostrar publicidade de restaurante a um utilizador que visita sites de culinária regularmente, por ex.).</p>
+						<p>Você detém o poder de desligar os seus cookies, nas opções do seu browser, ou efetuando alterações nas ferramentas de programas Anti-Virus, como o Norton Internet Security. No entanto, isso poderá alterar a forma como interage com o nosso website, ou outros websites. Isso poderá afetar ou não permitir que faça logins em programas, sites ou fóruns da nossa e de outras redes.</p>
+						<h2>LIGAÇÕES A SITES DE TERCEIROS</h2>
+						<p>O Top Flix TV possui ligações para outros sites, os quais, a nosso ver, podem conter informações / ferramentas úteis para os nossos visitantes. A nossa política de privacidade não é aplicada a sites de terceiros, pelo que, caso visite outro site a partir do nosso deverá ler a politica de privacidade do mesmo.</p>
+						<p>Não nos responsabilizamos pela política de privacidade ou conteúdo presente nesses mesmos sites.</p>
+					</div>
+					
+				</div>
+			
+			</div>
+		</div>
+	</div>
+	
+
+	<!--OVER DOWNLOAD -->
+	<div onClick="closeCdown();" class="overlay-down background-over"></div>
+	<div class="over-down">
+		<a href="javascript:closeCdown();" class="closer"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 212.982 212.982" style="enable-background:new 0 0 212.982 212.982;" xml:space="preserve"><g><path style="fill-rule:evenodd;clip-rule:evenodd;" d="M131.804,106.491l75.936-75.936c6.99-6.99,6.99-18.323,0-25.312
+		c-6.99-6.99-18.322-6.99-25.312,0l-75.937,75.937L30.554,5.242c-6.99-6.99-18.322-6.99-25.312,0c-6.989,6.99-6.989,18.323,0,25.312
+		l75.937,75.936L5.242,182.427c-6.989,6.99-6.989,18.323,0,25.312c6.99,6.99,18.322,6.99,25.312,0l75.937-75.937l75.937,75.937
+		c6.989,6.99,18.322,6.99,25.312,0c6.99-6.99,6.99-18.322,0-25.312L131.804,106.491z"/></svg></a>
+		<div class="page-down">
+			
+			<div class="nada-aqui">
+				<div id="emptyH" class="nada-aqui"><div class="sv"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 45.667 45.667" style="enable-background:new 0 0 45.667 45.667;" xml:space="preserve"><path d="M35.358,11.601c2.98-1.113,4.506-4.455,3.398-7.453c-0.843-2.252-3.023-3.765-5.426-3.765
+			c-0.692,0-1.37,0.122-2.012,0.36c-0.119,0.045-11.851,4.528-15.22,17.991l-3.597,0.007c-0.733,0-1.374,0.351-1.714,0.937
+			c-0.339,0.587-0.322,1.317,0.046,1.957l8.638,14.903c0.366,0.638,0.99,1.018,1.67,1.018c0.678,0,1.302-0.38,1.671-1.018
+			l8.59-14.937c0.367-0.636,0.384-1.365,0.045-1.952c-0.339-0.587-0.979-0.938-1.716-0.938l-1.366,0.002
+			C30.785,13.523,35.196,11.668,35.358,11.601z M25.004,19.009c-0.231,0.646-0.147,1.323,0.229,1.858
+			c0.379,0.539,0.994,0.848,1.689,0.848l0.955-0.001l-6.739,11.717l-6.776-11.693l2.198-0.004c1.093-0.003,2.106-0.812,2.356-1.884
+			C21.744,7.739,32.263,3.595,32.363,3.556c0.309-0.114,0.635-0.173,0.968-0.173c1.158,0,2.209,0.729,2.613,1.809
+			c0.535,1.447-0.199,3.061-1.679,3.614C33.594,9.082,27.631,11.699,25.004,19.009z"/><path d="M44.167,27.951c-0.828,0-1.5,0.672-1.5,1.5v12.833H3V29.451c0-0.828-0.672-1.5-1.5-1.5
+			S0,28.623,0,29.451v13.333c0,1.379,1.121,2.5,2.5,2.5h40.667c1.379,0,2.5-1.121,2.5-2.5V29.451
+			C45.667,28.623,44.995,27.951,44.167,27.951z"/></svg></div>
+					
+					
+					<div class="h1down">Download direto</div>
+					
+					<div class="preload" style="display: none; margin: 0 auto; margin-top: 15px;"></div>
+					
+					<div class="down1">
+						<div class="nprim">Esse download vai descontar <b>0</b> créditos da sua conta.</div>
+						<div>
+							<a id="down-dub" href="#" class="btn-download">Baixar (Dublado)</a>
+							<a id="down-leg" href="#" class="btn-download">Baixar (Legendado)</a>
+						</div>
+					</div>
+					<div class="down2">
+						<div class="nprim">Para esse download você precisa de <b>0</b> créditos da sua conta.</div>
+						<div>
+							<a class="btn-download" href="#ganhar">Ganhar Créditos</a>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+			
+	</div>
+
+	<!-- ICON CAST -->
+	<div onClick="closeCcast();" class="overlay-cast background-over"></div>
+	<div class="over-cast">
+		<a href="javascript:closeCcast();" class="closer"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 212.982 212.982" style="enable-background:new 0 0 212.982 212.982;" xml:space="preserve"><g><path style="fill-rule:evenodd;clip-rule:evenodd;" d="M131.804,106.491l75.936-75.936c6.99-6.99,6.99-18.323,0-25.312
+		c-6.99-6.99-18.322-6.99-25.312,0l-75.937,75.937L30.554,5.242c-6.99-6.99-18.322-6.99-25.312,0c-6.989,6.99-6.989,18.323,0,25.312
+		l75.937,75.936L5.242,182.427c-6.989,6.99-6.989,18.323,0,25.312c6.99,6.99,18.322,6.99,25.312,0l75.937-75.937l75.937,75.937
+		c6.989,6.99,18.322,6.99,25.312,0c6.99-6.99,6.99-18.322,0-25.312L131.804,106.491z"/></svg></a>
+		
+		<div class="page-cast">
+			
+			<div class="nada-aqui">
+				<div id="emptyH" class="nada-aqui"><div class="sv"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+			<path d="M512,384V48H224v32h256v272H32V80h32V48H0v336h192v48h-64v32h240v-32h-48v-48H512z M288,432h-64v-48h64V432z"/>
+			<rect x="416" y="288" width="32" height="32"/>
+			<path d="M448,112c-114.82,0.132-207.868,93.18-208,208h32c0.115-97.155,78.845-175.885,176-176V112z"/>
+			<path d="M448,166.864C363.466,166.961,294.961,235.466,294.864,320h32c0.071-66.872,54.264-121.065,121.136-121.136V166.864z"/>
+			<path d="M448,221.712c-54.257,0.062-98.226,44.031-98.288,98.288h32c0.044-36.592,29.696-66.244,66.288-66.288V221.712z"/>
+			<rect x="96" y="48" width="32" height="32"/>
+			<rect x="160" y="48" width="32" height="32"/></svg></div>
+					<div class="h1cast">Chormecast/DLNA</div>
+					<div class="cast1" style="display: none;">
+						<div class="nprim">Para usar chromecast ou DLNA (smart tv) ligue o botão abaixo para conectar com o app Web Video Cast (caso apareça esse link não parece um vídeo. Clique em TRANSMITIR AGORA).</div>
+						<div id="toggles" style="">
+							<input type="checkbox" name="auto-cast" id="checkbox3" class="ios-toggle">
+							<label for="checkbox3" class="checkbox-label" data-off="Desligado" data-on="LIGADO"></label>
+						</div>
+					</div>
+					<div class="cast2" style="display: none;">
+						<div class="nprim">Para usar chromecast ou DLNA (smart tv) necessita instalar um app externo chamado Web Video Cast.</div>
+						<div class="nprim" style="padding-top: 25px;">
+							<a href="javascript:baixarCast();"><img src="img/localcast.png" /></a>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<ul class="menu-ADULTO menu-categoria">
+		<div class="rel"></div>
+		<div class="closer"><a href="javascript:hideCategorias();" class="clo"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  x="0px" y="0px" viewBox="0 0 438.533 438.533" style="enable-background:new 0 0 438.533 438.533;" xml:space="preserve">
+					<path d="M409.133,109.203c-19.608-33.592-46.205-60.189-79.798-79.796C295.736,9.801,259.058,0,219.273,0    c-39.781,0-76.47,9.801-110.063,29.407c-33.595,19.604-60.192,46.201-79.8,79.796C9.801,142.8,0,179.489,0,219.267    c0,39.78,9.804,76.463,29.407,110.062c19.607,33.592,46.204,60.189,79.799,79.798c33.597,19.605,70.283,29.407,110.063,29.407    s76.47-9.802,110.065-29.407c33.593-19.602,60.189-46.206,79.795-79.798c19.603-33.596,29.403-70.284,29.403-110.062    C438.533,179.485,428.732,142.795,409.133,109.203z M353.742,297.208c-13.894,23.791-32.736,42.64-56.527,56.534    c-23.791,13.894-49.771,20.834-77.945,20.834c-28.167,0-54.149-6.94-77.943-20.834c-23.791-13.895-42.633-32.743-56.527-56.534    c-13.897-23.791-20.843-49.772-20.843-77.941c0-28.171,6.949-54.152,20.843-77.943c13.891-23.791,32.738-42.637,56.527-56.53    c23.791-13.895,49.772-20.84,77.943-20.84c28.173,0,54.154,6.945,77.945,20.84c23.791,13.894,42.634,32.739,56.527,56.53    c13.895,23.791,20.838,49.772,20.838,77.943C374.58,247.436,367.637,273.417,353.742,297.208z"></path><path d="M316.058,173.584c0-2.474-0.948-4.661-2.854-6.567l-41.688-41.684c-1.903-1.902-4.086-2.852-6.563-2.852    s-4.661,0.95-6.564,2.852l-39.117,39.116l-39.115-39.116c-1.903-1.902-4.093-2.852-6.567-2.852c-2.475,0-4.665,0.95-6.567,2.852    l-41.684,41.684c-1.903,1.906-2.853,4.093-2.853,6.567s0.95,4.665,2.853,6.567l39.115,39.115l-39.115,39.113    c-1.903,1.903-2.853,4.093-2.853,6.563c0,2.479,0.95,4.668,2.853,6.571l41.684,41.685c1.903,1.903,4.093,2.852,6.567,2.852    c2.474,0,4.664-0.948,6.567-2.852l39.115-39.115l39.117,39.115c1.903,1.903,4.087,2.852,6.564,2.852s4.66-0.948,6.563-2.852    l41.688-41.685c1.91-1.903,2.854-4.093,2.854-6.571c0-2.471-0.948-4.66-2.854-6.563l-39.108-39.113l39.108-39.115    C315.113,178.249,316.058,176.058,316.058,173.584z"></path></svg></a>
+		</div>
+	</ul>
+	
+	<ul class="menu-FILMES menu-categoria">
+		<div class="rel">
+			<li><a onClick="hideCategorias();" id="Fnovos" data-name="Novos no Top Flix TV" href="#filmes?novos" class="active">Novos no Top Flix TV</a></li>
+			<li><a onClick="hideCategorias();" id="Fnews" data-name="Lançamentos" href="#filmes?news">Lançamentos</a></li>
+			<li class="bot"><a onClick="hideCategorias();" id="Flistas" data-name="PlayLists" href="#filmes?listas">PlayLists</a></li>
+		</div>
+		<div class="closer"><a href="javascript:hideCategorias();" class="clo"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  x="0px" y="0px" viewBox="0 0 438.533 438.533" style="enable-background:new 0 0 438.533 438.533;" xml:space="preserve">
+					<path d="M409.133,109.203c-19.608-33.592-46.205-60.189-79.798-79.796C295.736,9.801,259.058,0,219.273,0    c-39.781,0-76.47,9.801-110.063,29.407c-33.595,19.604-60.192,46.201-79.8,79.796C9.801,142.8,0,179.489,0,219.267    c0,39.78,9.804,76.463,29.407,110.062c19.607,33.592,46.204,60.189,79.799,79.798c33.597,19.605,70.283,29.407,110.063,29.407    s76.47-9.802,110.065-29.407c33.593-19.602,60.189-46.206,79.795-79.798c19.603-33.596,29.403-70.284,29.403-110.062    C438.533,179.485,428.732,142.795,409.133,109.203z M353.742,297.208c-13.894,23.791-32.736,42.64-56.527,56.534    c-23.791,13.894-49.771,20.834-77.945,20.834c-28.167,0-54.149-6.94-77.943-20.834c-23.791-13.895-42.633-32.743-56.527-56.534    c-13.897-23.791-20.843-49.772-20.843-77.941c0-28.171,6.949-54.152,20.843-77.943c13.891-23.791,32.738-42.637,56.527-56.53    c23.791-13.895,49.772-20.84,77.943-20.84c28.173,0,54.154,6.945,77.945,20.84c23.791,13.894,42.634,32.739,56.527,56.53    c13.895,23.791,20.838,49.772,20.838,77.943C374.58,247.436,367.637,273.417,353.742,297.208z"></path><path d="M316.058,173.584c0-2.474-0.948-4.661-2.854-6.567l-41.688-41.684c-1.903-1.902-4.086-2.852-6.563-2.852    s-4.661,0.95-6.564,2.852l-39.117,39.116l-39.115-39.116c-1.903-1.902-4.093-2.852-6.567-2.852c-2.475,0-4.665,0.95-6.567,2.852    l-41.684,41.684c-1.903,1.906-2.853,4.093-2.853,6.567s0.95,4.665,2.853,6.567l39.115,39.115l-39.115,39.113    c-1.903,1.903-2.853,4.093-2.853,6.563c0,2.479,0.95,4.668,2.853,6.571l41.684,41.685c1.903,1.903,4.093,2.852,6.567,2.852    c2.474,0,4.664-0.948,6.567-2.852l39.115-39.115l39.117,39.115c1.903,1.903,4.087,2.852,6.564,2.852s4.66-0.948,6.563-2.852    l41.688-41.685c1.91-1.903,2.854-4.093,2.854-6.571c0-2.471-0.948-4.66-2.854-6.563l-39.108-39.113l39.108-39.115    C315.113,178.249,316.058,176.058,316.058,173.584z"></path></svg></a>
+		</div>
+	</ul>
+	
+	<ul class="menu-SERIES menu-categoria">
+		<div class="rel">
+			<li><a id="Smelhores" onClick="hideCategorias();" data-name="Recém Adicionadas" href="#series?melhores" class="active">Recém Adicionadas</a></li>
+		</div>
+		<div class="closer"><a href="javascript:hideCategorias();" class="clo"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  x="0px" y="0px" viewBox="0 0 438.533 438.533" style="enable-background:new 0 0 438.533 438.533;" xml:space="preserve">
+					<path d="M409.133,109.203c-19.608-33.592-46.205-60.189-79.798-79.796C295.736,9.801,259.058,0,219.273,0    c-39.781,0-76.47,9.801-110.063,29.407c-33.595,19.604-60.192,46.201-79.8,79.796C9.801,142.8,0,179.489,0,219.267    c0,39.78,9.804,76.463,29.407,110.062c19.607,33.592,46.204,60.189,79.799,79.798c33.597,19.605,70.283,29.407,110.063,29.407    s76.47-9.802,110.065-29.407c33.593-19.602,60.189-46.206,79.795-79.798c19.603-33.596,29.403-70.284,29.403-110.062    C438.533,179.485,428.732,142.795,409.133,109.203z M353.742,297.208c-13.894,23.791-32.736,42.64-56.527,56.534    c-23.791,13.894-49.771,20.834-77.945,20.834c-28.167,0-54.149-6.94-77.943-20.834c-23.791-13.895-42.633-32.743-56.527-56.534    c-13.897-23.791-20.843-49.772-20.843-77.941c0-28.171,6.949-54.152,20.843-77.943c13.891-23.791,32.738-42.637,56.527-56.53    c23.791-13.895,49.772-20.84,77.943-20.84c28.173,0,54.154,6.945,77.945,20.84c23.791,13.894,42.634,32.739,56.527,56.53    c13.895,23.791,20.838,49.772,20.838,77.943C374.58,247.436,367.637,273.417,353.742,297.208z"></path><path d="M316.058,173.584c0-2.474-0.948-4.661-2.854-6.567l-41.688-41.684c-1.903-1.902-4.086-2.852-6.563-2.852    s-4.661,0.95-6.564,2.852l-39.117,39.116l-39.115-39.116c-1.903-1.902-4.093-2.852-6.567-2.852c-2.475,0-4.665,0.95-6.567,2.852    l-41.684,41.684c-1.903,1.906-2.853,4.093-2.853,6.567s0.95,4.665,2.853,6.567l39.115,39.115l-39.115,39.113    c-1.903,1.903-2.853,4.093-2.853,6.563c0,2.479,0.95,4.668,2.853,6.571l41.684,41.685c1.903,1.903,4.093,2.852,6.567,2.852    c2.474,0,4.664-0.948,6.567-2.852l39.115-39.115l39.117,39.115c1.903,1.903,4.087,2.852,6.564,2.852s4.66-0.948,6.563-2.852    l41.688-41.685c1.91-1.903,2.854-4.093,2.854-6.571c0-2.471-0.948-4.66-2.854-6.563l-39.108-39.113l39.108-39.115    C315.113,178.249,316.058,176.058,316.058,173.584z"></path></svg></a>
+		</div>
+	</ul>
+	
+	<ul class="menu-TV menu-categoria">
+		<div class="rel"></div>
+		<div class="closer"><a href="javascript:hideCategorias();" class="clo"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  x="0px" y="0px" viewBox="0 0 438.533 438.533" style="enable-background:new 0 0 438.533 438.533;" xml:space="preserve">
+					<path d="M409.133,109.203c-19.608-33.592-46.205-60.189-79.798-79.796C295.736,9.801,259.058,0,219.273,0    c-39.781,0-76.47,9.801-110.063,29.407c-33.595,19.604-60.192,46.201-79.8,79.796C9.801,142.8,0,179.489,0,219.267    c0,39.78,9.804,76.463,29.407,110.062c19.607,33.592,46.204,60.189,79.799,79.798c33.597,19.605,70.283,29.407,110.063,29.407    s76.47-9.802,110.065-29.407c33.593-19.602,60.189-46.206,79.795-79.798c19.603-33.596,29.403-70.284,29.403-110.062    C438.533,179.485,428.732,142.795,409.133,109.203z M353.742,297.208c-13.894,23.791-32.736,42.64-56.527,56.534    c-23.791,13.894-49.771,20.834-77.945,20.834c-28.167,0-54.149-6.94-77.943-20.834c-23.791-13.895-42.633-32.743-56.527-56.534    c-13.897-23.791-20.843-49.772-20.843-77.941c0-28.171,6.949-54.152,20.843-77.943c13.891-23.791,32.738-42.637,56.527-56.53    c23.791-13.895,49.772-20.84,77.943-20.84c28.173,0,54.154,6.945,77.945,20.84c23.791,13.894,42.634,32.739,56.527,56.53    c13.895,23.791,20.838,49.772,20.838,77.943C374.58,247.436,367.637,273.417,353.742,297.208z"></path><path d="M316.058,173.584c0-2.474-0.948-4.661-2.854-6.567l-41.688-41.684c-1.903-1.902-4.086-2.852-6.563-2.852    s-4.661,0.95-6.564,2.852l-39.117,39.116l-39.115-39.116c-1.903-1.902-4.093-2.852-6.567-2.852c-2.475,0-4.665,0.95-6.567,2.852    l-41.684,41.684c-1.903,1.906-2.853,4.093-2.853,6.567s0.95,4.665,2.853,6.567l39.115,39.115l-39.115,39.113    c-1.903,1.903-2.853,4.093-2.853,6.563c0,2.479,0.95,4.668,2.853,6.571l41.684,41.685c1.903,1.903,4.093,2.852,6.567,2.852    c2.474,0,4.664-0.948,6.567-2.852l39.115-39.115l39.117,39.115c1.903,1.903,4.087,2.852,6.564,2.852s4.66-0.948,6.563-2.852    l41.688-41.685c1.91-1.903,2.854-4.093,2.854-6.571c0-2.471-0.948-4.66-2.854-6.563l-39.108-39.113l39.108-39.115    C315.113,178.249,316.058,176.058,316.058,173.584z"></path></svg></a>
+		</div>
+	</ul>
+
+	<ul class="menu-TEMPORADAS menu-categoria">
+		<div class="rel">
+			<div class="sCenter" id="stt"></div>
+		</div>
+		<div class="closer"><a href="javascript:hideCategorias();" class="clo"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"  x="0px" y="0px" viewBox="0 0 438.533 438.533" style="enable-background:new 0 0 438.533 438.533;" xml:space="preserve">
+					<path d="M409.133,109.203c-19.608-33.592-46.205-60.189-79.798-79.796C295.736,9.801,259.058,0,219.273,0    c-39.781,0-76.47,9.801-110.063,29.407c-33.595,19.604-60.192,46.201-79.8,79.796C9.801,142.8,0,179.489,0,219.267    c0,39.78,9.804,76.463,29.407,110.062c19.607,33.592,46.204,60.189,79.799,79.798c33.597,19.605,70.283,29.407,110.063,29.407    s76.47-9.802,110.065-29.407c33.593-19.602,60.189-46.206,79.795-79.798c19.603-33.596,29.403-70.284,29.403-110.062    C438.533,179.485,428.732,142.795,409.133,109.203z M353.742,297.208c-13.894,23.791-32.736,42.64-56.527,56.534    c-23.791,13.894-49.771,20.834-77.945,20.834c-28.167,0-54.149-6.94-77.943-20.834c-23.791-13.895-42.633-32.743-56.527-56.534    c-13.897-23.791-20.843-49.772-20.843-77.941c0-28.171,6.949-54.152,20.843-77.943c13.891-23.791,32.738-42.637,56.527-56.53    c23.791-13.895,49.772-20.84,77.943-20.84c28.173,0,54.154,6.945,77.945,20.84c23.791,13.894,42.634,32.739,56.527,56.53    c13.895,23.791,20.838,49.772,20.838,77.943C374.58,247.436,367.637,273.417,353.742,297.208z"></path><path d="M316.058,173.584c0-2.474-0.948-4.661-2.854-6.567l-41.688-41.684c-1.903-1.902-4.086-2.852-6.563-2.852    s-4.661,0.95-6.564,2.852l-39.117,39.116l-39.115-39.116c-1.903-1.902-4.093-2.852-6.567-2.852c-2.475,0-4.665,0.95-6.567,2.852    l-41.684,41.684c-1.903,1.906-2.853,4.093-2.853,6.567s0.95,4.665,2.853,6.567l39.115,39.115l-39.115,39.113    c-1.903,1.903-2.853,4.093-2.853,6.563c0,2.479,0.95,4.668,2.853,6.571l41.684,41.685c1.903,1.903,4.093,2.852,6.567,2.852    c2.474,0,4.664-0.948,6.567-2.852l39.115-39.115l39.117,39.115c1.903,1.903,4.087,2.852,6.564,2.852s4.66-0.948,6.563-2.852    l41.688-41.685c1.91-1.903,2.854-4.093,2.854-6.571c0-2.471-0.948-4.66-2.854-6.563l-39.108-39.113l39.108-39.115    C315.113,178.249,316.058,176.058,316.058,173.584z"></path></svg></a>
+		</div>
+	</ul>
+	
+	<div id="sHome" style="display: none;">
+		<div class="one"></div>
+		<div id="cast-dub"></div>
+		<div id="cast-leg"></div>
+		<input id="btn_preparevideo" />
+		<input id="btn_prepare" />
+	</div>
+	
+	
+	<button id="exoplayer" style="display: none;" data-url="" data-name="" data-epg="i">exo</button>
+	<button id="showUnderUiButton" style="display: none;"></button>
+	<button id="showUiButton" style="display: none;"></button>
+</body>
+	
+</html>

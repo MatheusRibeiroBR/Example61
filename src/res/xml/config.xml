@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<http://www.w3.org/ns/widgets:widget xmlns:null="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" android-versionCode="2" id="topflix.com.br" version="1.0.2">
+	<http://www.w3.org/ns/widgets:feature name="Fullscreen">
+		<http://www.w3.org/ns/widgets:param name="android-package" value="com.filfatstudios.fullscreen.Fullscreen" />
+	</http://www.w3.org/ns/widgets:feature>
+	<http://www.w3.org/ns/widgets:feature name="AdMob">
+		<http://www.w3.org/ns/widgets:param name="android-package" value="com.rjfun.cordova.admob.AdMobPlugin" />
+		<http://www.w3.org/ns/widgets:param name="onload" value="true" />
+	</http://www.w3.org/ns/widgets:feature>
+	<http://www.w3.org/ns/widgets:feature name="AppAvailability">
+		<http://www.w3.org/ns/widgets:param name="android-package" value="com.ohh2ahh.appavailability.AppAvailability" />
+	</http://www.w3.org/ns/widgets:feature>
+	<http://www.w3.org/ns/widgets:feature name="LaunchMyApp">
+		<http://www.w3.org/ns/widgets:param name="android-package" value="nl.xservices.plugins.LaunchMyApp" />
+	</http://www.w3.org/ns/widgets:feature>
+	<http://www.w3.org/ns/widgets:feature name="Device">
+		<http://www.w3.org/ns/widgets:param name="android-package" value="org.apache.cordova.device.Device" />
+	</http://www.w3.org/ns/widgets:feature>
+	<http://www.w3.org/ns/widgets:feature name="ExoPlayer">
+		<http://www.w3.org/ns/widgets:param name="android-package" value="co.frontyard.cordova.plugin.exoplayer.Plugin" />
+	</http://www.w3.org/ns/widgets:feature>
+	<http://www.w3.org/ns/widgets:feature name="FacebookConnectPlugin">
+		<http://www.w3.org/ns/widgets:param name="android-package" value="org.apache.cordova.facebook.ConnectPlugin" />
+		<http://www.w3.org/ns/widgets:param name="onload" value="true" />
+	</http://www.w3.org/ns/widgets:feature>
+	<http://www.w3.org/ns/widgets:access origin="https://m.facebook.com" />
+	<http://www.w3.org/ns/widgets:access origin="https://graph.facebook.com" />
+	<http://www.w3.org/ns/widgets:access origin="https://api.facebook.com" />
+	<http://www.w3.org/ns/widgets:access origin="https://*.fbcdn.net" />
+	<http://www.w3.org/ns/widgets:access origin="https://*.akamaihd.net" />
+	<http://www.w3.org/ns/widgets:feature name="AndroidFullScreen">
+		<http://www.w3.org/ns/widgets:param name="android-package" value="com.mesmotronic.plugins.FullScreenPlugin" />
+	</http://www.w3.org/ns/widgets:feature>
+	<http://www.w3.org/ns/widgets:feature name="InAppBrowser">
+		<http://www.w3.org/ns/widgets:param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+	</http://www.w3.org/ns/widgets:feature>
+	<http://www.w3.org/ns/widgets:feature name="Insomnia">
+		<http://www.w3.org/ns/widgets:param name="android-package" value="nl.xservices.plugins.Insomnia" />
+	</http://www.w3.org/ns/widgets:feature>
+	<http://www.w3.org/ns/widgets:feature name="NetworkStatus">
+		<http://www.w3.org/ns/widgets:param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+	</http://www.w3.org/ns/widgets:feature>
+	<http://www.w3.org/ns/widgets:feature name="CDVOrientation">
+		<http://www.w3.org/ns/widgets:param name="android-package" value="cordova.plugins.screenorientation.CDVOrientation" />
+	</http://www.w3.org/ns/widgets:feature>
+	<http://www.w3.org/ns/widgets:feature name="Whitelist">
+		<http://www.w3.org/ns/widgets:param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+		<http://www.w3.org/ns/widgets:param name="onload" value="true" />
+	</http://www.w3.org/ns/widgets:feature>
+	<http://www.w3.org/ns/widgets:feature name="SocialSharing">
+		<http://www.w3.org/ns/widgets:param name="android-package" value="nl.xservices.plugins.SocialSharing" />
+	</http://www.w3.org/ns/widgets:feature>
+	<http://www.w3.org/ns/widgets:feature name="Toast">
+		<http://www.w3.org/ns/widgets:param name="android-package" value="nl.xservices.plugins.Toast" />
+	</http://www.w3.org/ns/widgets:feature>
+	<http://www.w3.org/ns/widgets:feature name="OneSignalPush">
+		<http://www.w3.org/ns/widgets:param name="android-package" value="com.plugin.gcm.OneSignalPush" />
+	</http://www.w3.org/ns/widgets:feature>
+	<http://www.w3.org/ns/widgets:feature name="Keyboard">
+		<http://www.w3.org/ns/widgets:param name="android-package" onload="true" value="org.apache.cordova.labs.keyboard.Keyboard" />
+	</http://www.w3.org/ns/widgets:feature>
+	<http://www.w3.org/ns/widgets:name />
+	<http://www.w3.org/ns/widgets:description />
+	<http://www.w3.org/ns/widgets:author email="topflix.play@gmail.com" href="http://cordova.io" />
+	<http://www.w3.org/ns/widgets:content src="index.html" />
+	<http://www.w3.org/ns/widgets:access origin="*" />
+	<http://www.w3.org/ns/widgets:allow-navigation href="http://*/*" />
+	<http://www.w3.org/ns/widgets:allow-navigation href="https://*/*" />
+	<http://www.w3.org/ns/widgets:allow-intent href="http://*/*" />
+	<http://www.w3.org/ns/widgets:allow-intent href="https://*/*" />
+	<http://www.w3.org/ns/widgets:allow-intent href="tel:*" />
+	<http://www.w3.org/ns/widgets:allow-intent href="sms:*" />
+	<http://www.w3.org/ns/widgets:allow-intent href="mailto:*" />
+	<http://www.w3.org/ns/widgets:allow-intent href="geo:*" />
+	<http://www.w3.org/ns/widgets:icon density="ldpi" height="36" platform="android" src="package-assets/icon32.png" width="36" />
+	<http://www.w3.org/ns/widgets:icon density="mdpi" height="48" platform="android" src="package-assets/icon48.png" width="48" />
+	<http://www.w3.org/ns/widgets:icon density="hdpi" height="72" platform="android" src="package-assets/icon72.png" width="72" />
+	<http://www.w3.org/ns/widgets:icon density="xhdpi" height="96" platform="android" src="package-assets/icon96.png" width="96" />
+	<http://www.w3.org/ns/widgets:allow-intent href="market:*" />
+	<http://www.w3.org/ns/widgets:preference name="loglevel" value="DEBUG" />
+	<http://www.w3.org/ns/widgets:preference name="android-minSdkVersion" value="19" />
+	<http://www.w3.org/ns/widgets:preference name="android-targetSdkVersion" value="28" />
+	<http://www.w3.org/ns/widgets:preference name="android-installLocation" value="auto" />
+	<http://www.w3.org/ns/widgets:preference name="Orientation" value="portrait" />
+	<http://www.w3.org/ns/widgets:preference name="AndroidLaunchMode" value="singleTop" />
+</http://www.w3.org/ns/widgets:widget>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2" android:versionName="1.0.2" android:hardwareAccelerated="true" android:compileSdkVersion="28" android:compileSdkVersionCodename="9" package="topflix.com.br" platformBuildVersionCode="2" platformBuildVersionName="1.0.2">
+	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="28" />
+	<supports-screens android:anyDensity="true" android:smallScreens="true" android:normalScreens="true" android:largeScreens="true" android:resizeable="true" android:xlargeScreens="true" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="com.amazon.device.messaging.permission.RECEIVE" />
+	<permission android:name="topflix.com.br.permission.RECEIVE_ADM_MESSAGE" android:protectionLevel="0x2" />
+	<uses-permission android:name="topflix.com.br.permission.RECEIVE_ADM_MESSAGE" />
+	<permission android:name="topflix.com.br.permission.C2D_MESSAGE" android:protectionLevel="0x2" />
+	<uses-permission android:name="topflix.com.br.permission.C2D_MESSAGE" />
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.VIBRATE" />
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+	<uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
+	<uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" />
+	<uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+	<uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" />
+	<uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
+	<uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" />
+	<uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" />
+	<uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" />
+	<uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+	<uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
+	<uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" />
+	<uses-permission android:name="android.permission.READ_APP_BADGE" />
+	<uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS" />
+	<uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" />
+	<uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
+	<uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
+	<application android:label="Top Flix" android:icon="res/mipmap-xhdpi-v4/ic_launcher.png" android:hardwareAccelerated="true" android:supportsRtl="true" android:usesCleartextTraffic="true">
+		<activity android:theme="@android:style/Theme.DeviceDefault.NoActionBar" android:label="Top Flix" android:name="topflix.com.br.MainActivity" android:launchMode="singleTop" android:screenOrientation="portrait" android:configChanges="0xfb4" android:windowSoftInputMode="0x10">
+			<intent-filter android:label="Top Flix">
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="topflixhd" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme=" " android:host=" " android:pathPrefix="/" />
+			</intent-filter>
+		</activity>
+		<activity android:theme="@android:style/Theme.Translucent" android:name="com.google.android.gms.ads.AdActivity" android:exported="false" android:configChanges="0xfb0" />
+		<meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-5037456510971655~8003689317" />
+		<meta-data android:name="com.facebook.sdk.ApplicationId" android:value="2508624932528423" />
+		<meta-data android:name="com.facebook.sdk.ApplicationName" android:value="Top Flix TV" />
+		<activity android:theme="resourceId:0x7f0d017c" android:label="Top Flix TV" android:name="com.facebook.FacebookActivity" android:configChanges="0x5b0" />
+		<receiver android:name="nl.xservices.plugins.ShareChooserPendingIntent" android:enabled="true">
+			<intent-filter>
+				<action android:name="android.intent.action.SEND" />
+			</intent-filter>
+		</receiver>
+		<provider android:name="nl.xservices.plugins.FileProvider" android:exported="false" android:authorities="topflix.com.br.sharing.provider" android:grantUriPermissions="true">
+			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="res/xml/sharing_paths.xml" />
+		</provider>
+		<amazon:enable-feature xmlns:amazon="http://schemas.amazon.com/apk/res/android" android:name="com.amazon.device.messaging" android:required="false" />
+		<service android:name="com.onesignal.ADMMessageHandler" android:exported="false" />
+		<receiver android:name="com.onesignal.ADMMessageHandler$Receiver" android:permission="com.amazon.device.messaging.permission.SEND">
+			<intent-filter>
+				<action android:name="com.amazon.device.messaging.intent.REGISTRATION" />
+				<action android:name="com.amazon.device.messaging.intent.RECEIVE" />
+				<category android:name="topflix.com.br" />
+			</intent-filter>
+		</receiver>
+		<meta-data android:name="com.onesignal.NotificationAccentColor.DEFAULT" android:value="d30106" />
+		<meta-data android:name="onesignal_app_id" android:value="" />
+		<meta-data android:name="onesignal_google_project_number" android:value="str:REMOTE" />
+		<receiver android:name="com.onesignal.GcmBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+			<intent-filter android:priority="999">
+				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+				<category android:name="topflix.com.br" />
+			</intent-filter>
+		</receiver>
+		<receiver android:name="com.onesignal.NotificationOpenedReceiver" />
+		<service android:name="com.onesignal.GcmIntentService" />
+		<service android:name="com.onesignal.GcmIntentJobService" android:permission="android.permission.BIND_JOB_SERVICE" />
+		<service android:name="com.onesignal.RestoreJobService" android:permission="android.permission.BIND_JOB_SERVICE" />
+		<service android:name="com.onesignal.RestoreKickoffJobService" android:permission="android.permission.BIND_JOB_SERVICE" />
+		<service android:name="com.onesignal.SyncService" android:stopWithTask="true" />
+		<service android:name="com.onesignal.SyncJobService" android:permission="android.permission.BIND_JOB_SERVICE" />
+		<activity android:theme="@android:style/Theme.Translucent.NoTitleBar" android:name="com.onesignal.PermissionsActivity" />
+		<service android:name="com.onesignal.NotificationRestoreService" />
+		<receiver android:name="com.onesignal.BootUpReceiver">
+			<intent-filter>
+				<action android:name="android.intent.action.BOOT_COMPLETED" />
+				<action android:name="android.intent.action.QUICKBOOT_POWERON" />
+			</intent-filter>
+		</receiver>
+		<receiver android:name="com.onesignal.UpgradeReceiver">
+			<intent-filter>
+				<action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+			</intent-filter>
+		</receiver>
+		<service android:name="com.google.firebase.messaging.FirebaseMessagingService" android:exported="true">
+			<intent-filter android:priority="-500">
+				<action android:name="com.google.firebase.MESSAGING_EVENT" />
+			</intent-filter>
+		</service>
+		<service android:name="com.google.firebase.components.ComponentDiscoveryService" android:exported="false">
+			<meta-data android:name="com.google.firebase.components:com.google.firebase.iid.Registrar" android:value="com.google.firebase.components.ComponentRegistrar" />
+		</service>
+		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:permission="com.google.android.c2dm.permission.SEND" android:exported="true">
+			<intent-filter>
+				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+			</intent-filter>
+		</receiver>
+		<service android:name="com.google.firebase.iid.FirebaseInstanceIdService" android:exported="true">
+			<intent-filter android:priority="-500">
+				<action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+			</intent-filter>
+		</service>
+		<provider android:name="com.google.firebase.provider.FirebaseInitProvider" android:exported="false" android:authorities="topflix.com.br.firebaseinitprovider" android:initOrder="100" />
+		<activity android:theme="@android:style/Theme.Translucent.NoTitleBar" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:exported="false" />
+		<meta-data android:name="com.google.android.gms.version" android:value="12451000" />
+		<activity android:name="com.facebook.CustomTabMainActivity" />
+		<activity android:name="com.facebook.CustomTabActivity" />
+		<provider android:name="com.facebook.internal.FacebookInitProvider" android:exported="false" android:authorities="topflix.com.br.FacebookInitProvider" />
+		<receiver android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver" android:exported="false">
+			<intent-filter>
+				<action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
+			</intent-filter>
+		</receiver>
+		<receiver android:name="com.facebook.CampaignTrackingReceiver" android:permission="android.permission.INSTALL_PACKAGES" android:exported="true">
+			<intent-filter>
+				<action android:name="com.android.vending.INSTALL_REFERRER" />
+			</intent-filter>
+		</receiver>
+		<meta-data android:name="com.android.vending.derived.apk.id" android:value="1" />
+	</application>
+</manifest>

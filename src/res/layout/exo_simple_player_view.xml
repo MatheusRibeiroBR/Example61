@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+	<com.google.android.exoplayer2.ui.AspectRatioFrameLayout android:layout_gravity="0x11" android:id="false" android:layout_width="-1" android:layout_height="-1">
+		<View android:id="false" android:background="resourceId:0x106000c" android:layout_width="-1" android:layout_height="-1" />
+		<ImageView android:id="false" android:layout_width="-1" android:layout_height="-1" android:scaleType="1" />
+		<com.google.android.exoplayer2.ui.SubtitleView android:id="false" android:layout_width="-1" android:layout_height="-1" />
+	</com.google.android.exoplayer2.ui.AspectRatioFrameLayout>
+	<View android:id="false" android:layout_width="-1" android:layout_height="-1" />
+	<FrameLayout android:id="false" android:layout_width="-1" android:layout_height="-1" />
+</merge>
